@@ -46,7 +46,7 @@ function ProfileGallery({ canEdit = true, onChange, imagesArr = [defaultImage,de
     return (
         <div className="profileGallery">
             <div className="imageContainer">
-                <img className="mainImage" src={imagesArrState[0]} alt="main profile" />
+                <img className="mainImage" src={imagesArrState[0]} alt="main profileState" />
                 {canEdit &&
                     <input type="file" style={{ display: 'none' }} id="image0Uploader" accept="image/*" onChange={(e) => {
                         fetchImage(e.target.files[0], 0)
@@ -59,7 +59,7 @@ function ProfileGallery({ canEdit = true, onChange, imagesArr = [defaultImage,de
                 {
                     imagesArrState.filter((x, index) => index !== 0).map((src, index) => {
                         return <div className="imageContainer" key={index}>
-                            <img alt="main profile" src={src} />
+                            <img alt="main profileState" src={src} />
                             {canEdit && <input type="file" style={{ display: 'none' }} id={`image${index + 1}Uploader`}
                                 accept="image/*"
                                 onChange={(e) => fetchImage(e.target.files[0], 1 + index)} />}
