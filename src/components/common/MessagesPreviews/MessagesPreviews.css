@@ -1,0 +1,17 @@
+
+.messagesWrapper_content {
+    background: #F5F5F5;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.messagesWrapper{
+    background: #F5F5F5;
+    position: relative;
+    padding:  2px;
+    margin: 0 0 15px 0;
+    width: 100%;
+    height: max-content;
+    box-sizing: border-box;
+}
