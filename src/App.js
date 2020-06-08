@@ -16,6 +16,7 @@ import {
 } from 'recoil';
 import "./recoil/recoilStates"
 import {RegisterPage} from "./components/pages/registerPage/registerPage";
+import ProfileInputField from "./components/common/profileInputField/profileInputField";
 
 // import {reduce} from 'immer'
 
@@ -29,6 +30,10 @@ function App() {
                 <Switch>
                     <Route path="/register">
                         <RegisterPage />
+                    </Route>
+
+                    <Route path="/profileInput">
+                        <ProfileInputField />
                     </Route>
 
                     <Route path="/">
