@@ -1,18 +1,44 @@
+//react imports--------------------------------------------------------------------
 import React from 'react';
-import InputFieldWrapper from "./components/inputFieldWrapper/inputFieldWrapper";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect
+} from "react-router-dom";
+
+//recoil imports-------------------------------------------------------------------
+import {
+    RecoilRoot,
+    selector,
+    useRecoilState,
+    useRecoilValue,
+} from 'recoil';
+import "./recoil/recoilStates"
+import {RegisterPage} from "./components/pages/registerPage/registerPage";
+
+// import {reduce} from 'immer'
+
+
 
 function App() {
+
     return (
-        <div>
+        <RecoilRoot>
+            <div>
+                <Switch>
+                    <Route path="/register">
+                        <RegisterPage />
+                    </Route>
 
-            <InputFieldWrapper>
-                hello world
-            </InputFieldWrapper>
+                    <Route path="/">
+                        <Redirect to="/register" />
+                    </Route>
 
-            <InputFieldWrapper>
-                <button>some text</button>
-            </InputFieldWrapper>
-        </div>
+
+                </Switch>
+            </div>
+        </RecoilRoot>
     );
 }
 

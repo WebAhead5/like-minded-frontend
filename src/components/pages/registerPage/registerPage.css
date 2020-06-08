@@ -1,0 +1,17 @@
+
+.register{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    width: 100%;
+
+}
+.register_logo{
+  width: 200px;
+    height: auto;
+}
+.register_inputFields{
+    width: 60%;
+
+}

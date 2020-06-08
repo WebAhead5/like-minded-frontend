@@ -1,0 +1,24 @@
+
+
+.textField{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: content-box;
+    width: 100%;
+}
+
+.textField label{
+    width: calc(20% - 5px);
+    text-align: center;
+    font-weight: bold;
+
+}
+.textField input{
+    width: 80%;
+    margin-left: 5px;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
