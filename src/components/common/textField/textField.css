@@ -8,12 +8,15 @@
     margin: 0;
     height: content-box;
     width: 100%;
+    box-sizing: border-box;
+
 }
 
 .textField label{
     width: calc(20% - 5px);
     text-align: center;
     font-weight: bold;
+    box-sizing: border-box;
 
 }
 .textField input{
@@ -21,4 +24,5 @@
     margin-left: 5px;
     padding: 0 5px;
     box-sizing: border-box;
+
 }
