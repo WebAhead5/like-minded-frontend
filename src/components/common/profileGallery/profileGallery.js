@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./profileGallery.css";
 const { useState } = React;
 const axios = require('axios')
@@ -9,58 +9,66 @@ let randomImageUrl2 = "https://picsum.photos/id/2/200";
 let randomImageUrl3 = "https://picsum.photos/id/21/200";
 let randomImageUrl4 = "https://picsum.photos/id/23/200";
 
-function ProfileGallery({ canEdit, onChange, imagesArr = [randomImageUrl1, randomImageUrl2, randomImageUrl3, randomImageUrl4] }) {
+function ProfileGallery({ canEdit = true, onChange, imagesArr = [randomImageUrl1, randomImageUrl2, randomImageUrl3, randomImageUrl4] }) {
 
     const [imagesArrState, setImagesArrState] = useState(imagesArr)
+    // useEffect(() => {
+    //     onChange && onChange(imagesArr)
+    // },[imagesArr])
 
-    //state = { selectedFile: null }
+    function showUploadImagePopup(index) {
 
-    let fileSelectedHandler = event => {
-        let file = event.target.files[0] 
-        console.log(file )
-    var fr = new FileReader();
-    fr.readAsDataURL(file)
-    fr.onload= ()=>{
-        let imageString = fr.result.toString()
-        setImagesArrState ([imageString,imageString,imageString,imageString])
+        document.getElementById(`image${index}Uploader`).click()
 
-}
+    }
 
+    function fetchImage(file, index) {
+        console.log(index)
+        let fr = new FileReader();
+        fr.readAsDataURL(file)
+        fr.onload = () => {
+            let imageString = fr.result.toString()
+            let tempArr = [...imagesArrState]
+            tempArr[index] = imageString
+            setImagesArrState(tempArr)
+        }
     }
 
 
     return (
         <div className="profileGallery">
-            {/* <div className="imageContainer">
-                <img className="mainImage" src={imagesArr[0] || randomImageUrl1} alt="main profile"></img>
-                <input type="file" style={{ display: 'none' }} onChange={this.fileSelectedHandler} ref={fileInput => this.fileInput = fileInput} ></input>
-                <img className="addIcon" src={"/images/plus.svg"} alt="add symbol" onClick={this.fileInput.click()}></img>
-                <button onClick={this.fileUploadHandler}>Upload</button>
-            </div> */}
-              <div className="imageContainer">
-                <img className="mainImage" src={imagesArrState[0] } alt="main profile"></img>
-                <input type="file" style={{ display: 'none' }} id="image1Uploader" onChange={fileSelectedHandler} />
-                <img className="addIcon" src={"/images/plus.svg"} alt="add symbol" onClick={()=>{
-                    document.getElementById("image1Uploader").click()
-                }}></img>
 
-                
+
+            <div className="imageContainer">
+                <img className="mainImage" src={imagesArrState[0]} alt="main profile"/>
+                {canEdit &&
+                <input type="file" style={{display: 'none'}} id="image1Uploader" accept="image/*" onChange={(e) => {
+                    fetchImage(e.target.files[0], 0)
+                }}/>}
+
+                {canEdit &&  <img className="addIcon" src={"/images/plus.svg"} alt="add symbol"
+                      onClick={() => showUploadImagePopup(0)}/>}
+
+
             </div>
 
             <div className="threeImagesContainer">
-                <div className="imageContainer">
-                    <img alt="main profile" src={imagesArrState[1]}></img>
-                    <img className="addIcon" src={"/images/plus.svg"} alt="add symbol"></img>
-                </div>
-                <div className="imageContainer">
-                    <img alt="main profile" src={imagesArrState[2] }></img>
-                    <img className="addIcon" src={"/images/plus.svg"} alt="add symbol"></img>
-                </div>
-                <div className="imageContainer">
-                    <img alt="main profile" src={imagesArrState[3] }></img>
-                    <img className="addIcon" src={"/images/plus.svg"} alt="add symbol"></img>
-                </div>
+
+                {
+                    imagesArrState.filter((x, index) => index !== 0).map((src, index) => {
+                        return <div className="imageContainer" key={index}>
+                            <img alt="main profile" src={src}/>
+                            {canEdit &&  <input type="file" style={{display: 'none'}} id={`image${index + 1}Uploader`}
+                                   accept="image/*"
+                                   onChange={(e) => fetchImage(e.target.files[0], 1 + index)}/> }
+                            {canEdit &&  <img className="addIcon" src={"/images/plus.svg"} alt="add symbol"
+                                 onClick={() => showUploadImagePopup(1 + index)}/> }
+                        </div>
+                    })
+                }
+
             </div>
+
         </div>
     );
 }

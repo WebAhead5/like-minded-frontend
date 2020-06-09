@@ -1,5 +1,5 @@
-import ProfileInputField from "../profileInputField/profileInputField";
-import ProfileGallery from "../profileGallery/profileGallery"
+import ProfileInputField from "../../common/profileInputField/profileInputField";
+import ProfileGallery from "../../common/profileGallery/profileGallery"
 import React from "react";
 // import "./";
 const { useState } = React;
