@@ -18,7 +18,7 @@ import "./recoil/recoilStates"
 import {RegisterPage} from "./components/pages/registerPage/registerPage";
 import ProfileInputField from "./components/common/profileInputField/profileInputField";
 import ProfileGallery from "./components/common/profileGallery/profileGallery"
-import EditProfilePage from "./components/common/editProfilePage/editProfilePage"
+import EditProfilePage from "./components/pages/editProfilePage/editProfilePage"
 // import {reduce} from 'immer'
 
 
