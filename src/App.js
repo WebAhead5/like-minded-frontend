@@ -33,15 +33,7 @@ function App() {
                         <RegisterPage />
                     </Route>
 
-                    <Route path="/profileInput">
-                        <ProfileInputField />
-                    </Route>
-
-                    <Route path="/profileGallery">
-                        <ProfileGallery />
-                    </Route>
-
-                    <Route path="/editProfilePage">
+                    <Route path="/editProfile">
                         <EditProfilePage />
                     </Route>
 
