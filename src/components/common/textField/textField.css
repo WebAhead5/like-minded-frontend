@@ -3,7 +3,7 @@
 .textField{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0;
     margin: 0;
     height: content-box;
@@ -13,14 +13,14 @@
 }
 
 .textField label{
-    width: calc(20% - 5px);
+    width: content-box;
     text-align: center;
     font-weight: bold;
     box-sizing: border-box;
 
 }
 .textField input{
-    width: 80%;
+    width: 70%;
     margin-left: 5px;
     padding: 0 5px;
     box-sizing: border-box;
