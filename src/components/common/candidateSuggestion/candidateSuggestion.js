@@ -19,8 +19,12 @@ const defaultImage = "/images/defaultImageProfile.png";
 function CandidateSuggestion({ imagesArr }) {
 
     return (
-        <div className="candidateImages">
-
+        <div className="candidateSuggestion">
+            <img src={defaultImage}></img>
+            <p>Dex Schneider</p>
+            <p>5km Away</p> 
+            <p>"Hi I'm Dex Schneider... bio text lorem ipsum... ya ya.</p>
+            <p>Read more</p>
         </div>
     )
 }
