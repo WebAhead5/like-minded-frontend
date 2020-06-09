@@ -21,9 +21,9 @@ export function LoginPage() {
         setDisableInput(true)
         Axios.post("/api/auth/login",form)
             .then(({data})=>{
-                if(data.ok)
-                   setRedirect("/login/successful")
-
+                if(data.ok) {
+                    setRedirect("/login/successful")
+                }
                 else
                     setError(data.message)
 

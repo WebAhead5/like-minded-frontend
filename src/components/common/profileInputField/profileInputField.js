@@ -1,22 +1,33 @@
 import React from 'react';
 import "./profileInputField.css"
-const { useState } = React;
 
-function profileInputField({ canEdit, onChange
-    , content, title, placeHolder, rowCount }) {
+function profileInputField({ canEdit = true, onChange
+    , content, title, placeHolder="", rowCount=1 }) {
 
     // const [content, setContent] = useState("")
+    function textField() {
+        return <input
+                      name={title}
+                      type={"text"}
+                      value={content}
+                      placeholder={placeHolder}
+                      content={content}
+                      onChange={(e) => canEdit && onChange && onChange(e.target.value)}/>
 
+    }
+    function textarea () {
+        return <textarea
+                      name={title}
+                      placeholder={placeHolder}
+                      value={content}
+                      rows={rowCount}
+                      onChange={(e) => canEdit && onChange && onChange(e.target.value)}/>
+
+    }
     return (
-        <div className='textField' >
-            <form>
-                <label for="profileDescription">Describe yourself in a sentence</label>
-                <input type="text" id="profileDescription" name="profileDescription" placeholder="100 characters"></input>
-                <label for="bio">bio</label>
-                <textarea name="bio" cols="30" rows="5" placeholder="100 characters"></textarea>
-                <label for="occupation">occupation</label>
-                <input type="text" id="occupation" name="occupation" placeholder="100 characters"></input>
-            </form>
+        <div className='profileInputField' >
+            <label htmlFor={title}>{title}</label>
+            {rowCount===1? textField() : textarea()}
         </div>
     );
 }

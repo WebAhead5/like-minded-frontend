@@ -1,7 +1,6 @@
 //react imports--------------------------------------------------------------------
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
     Redirect
@@ -12,42 +11,34 @@ import {
     RecoilRoot,
     selector,
     useRecoilState,
-    useRecoilValue,
+    useRecoilValue, useSetRecoilState,
 } from 'recoil';
-import "./tools/recoil/recoilStates"
-import {LoginPage} from "./components/pages/loginPage/loginPage";
-import ProfileInputField from "./components/common/profileInputField/profileInputField";
-import ProfileGallery from "./components/common/profileGallery/profileGallery"
-import EditProfilePage from "./components/pages/editProfilePage/editProfilePage"
-// import {reduce} from 'immer'
+import {loggedInState, profileState} from "./tools/recoil/recoilStates";
+
+//pages----------------------------------------------------------------------------------
+import AuthRoutes from "./components/routes/authRoutes";
 
 
 
 function App() {
 
+
+
     return (
-        <RecoilRoot>
             <div>
                 <Switch>
-                    <Route exact  path="/login/successful"  >
-                        test
-                    </Route>
-                    <Route exact  path="/login">
-                        <LoginPage />
-                    </Route>
-
-                    <Route path="/editProfile">
-                        <EditProfilePage />
-                    </Route>
-
                     <Route  exact  path="/">
                         home
                     </Route>
 
+                    <Route exact path="/editProfile">
+                        {/*{isLoggedIn?  <EditProfilePage /> :<Redirect to={"/login"}/> }*/}
+                    </Route>
+
+                    <AuthRoutes/>
 
                 </Switch>
             </div>
-        </RecoilRoot>
     );
 }
 
