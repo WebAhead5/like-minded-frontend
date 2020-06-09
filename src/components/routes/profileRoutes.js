@@ -1,0 +1,36 @@
+import React from 'react';
+import {Redirect, Route,Switch} from "react-router-dom";
+import {loggedInState} from "../../tools/recoil/recoilStates";
+import {useRecoilValue} from "recoil";
+import EditProfilePage from "../pages/editProfilePage/editProfilePage";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
+
+
+function ProfileRoutes(props) {
+
+    const isLoggedIn = useRecoilValue(loggedInState)
+
+
+    return (
+        <Switch>
+
+            <Route exact path="/profile" render={(props) => {
+                if (isLoggedIn)
+                    return  "needs implementing"
+
+                return <Redirect to={"/login"}/>
+            }}/>
+
+
+            <Route exact path="/editProfile" render={(props) => {
+                if (isLoggedIn)
+                    return < EditProfilePage />
+
+                return <Redirect to={"/login"}/>
+            }}/>
+
+        </Switch>
+    );
+}
+
+export default ProfileRoutes;

@@ -11,14 +11,15 @@ import {Redirect} from "react-router-dom";
 
 function EditProfilePage( ) {
     // const [content, setContent] = useState("")
-    const profileDate = useRecoilValue(profileState);
+    const [profile,setProfile] = useRecoilState(profileState);
     const isLoggedIn = useRecoilValue(loggedInState);
+    // console.log(profileDate)
 
-
+    return <div>{JSON.stringify(profile)}</div>
     return (
         <div className="editProfilePage">
             <main className="editProfilePage_content" >
-                <ProfileGallery imagesArr={isLoggedIn && [profileDate.primaryphoto , ...profileDate.subphotos]} onChange={(arr)=>console.log(arr)} />
+                <ProfileGallery imagesArr={isLoggedIn && [profile.primaryphoto , ...profile.subphotos]} onChange={(arr)=>console.log(arr)} />
                 <ProfileInputField title={"status"} content={""} placeHolder={"describe yourself in a sentence..."} />
                 <ProfileInputField title={"bio"} content={""} placeHolder={"bio..."} rowCount={5}/>
                 <ProfileInputField title={"job"} content={""} placeHolder={"job..."} />

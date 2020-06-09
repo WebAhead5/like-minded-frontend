@@ -17,28 +17,18 @@ import {loggedInState, profileState} from "./tools/recoil/recoilStates";
 
 //pages----------------------------------------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
+import EditProfilePage from "./components/pages/editProfilePage/editProfilePage";
+import ProfileRoutes from "./components/routes/profileRoutes";
 
 
 
 function App() {
 
-
-
     return (
-            <div>
-                <Switch>
-                    <Route  exact  path="/">
-                        home
-                    </Route>
-
-                    <Route exact path="/editProfile">
-                        {/*{isLoggedIn?  <EditProfilePage /> :<Redirect to={"/login"}/> }*/}
-                    </Route>
-
-                    <AuthRoutes/>
-
-                </Switch>
-            </div>
+        <div>
+            <AuthRoutes/>
+            <ProfileRoutes/>
+        </div>
     );
 }
 

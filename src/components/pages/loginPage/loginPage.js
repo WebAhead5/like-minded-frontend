@@ -4,36 +4,44 @@ import InputFieldWrapper from "../../common/inputFieldWrapper/inputFieldWrapper"
 import TextField from "../../common/textField/textField";
 import "./loginPage.css"
 import "../../../index.css"
-import {Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export function LoginPage() {
 
     const [form, setForm] = useState({});
     const [error, setError] = useState("");
-    const [disableInput, setDisableInput] =     useState(false)
-    const [redirect, setRedirect] =     useState("")
 
+    let disableInput = false;
 
     function onSubmit(e) {
         e.preventDefault()
+
+
         if(disableInput)
             return;
-        setDisableInput(true)
+        disableInput = true;
+
+
         Axios.post("/api/auth/login",form)
             .then(({data})=>{
-                if(data.ok) {
-                    setRedirect("/login/successful")
-                }
-                else
-                    setError(data.message)
 
-                setDisableInput(false)
+                if(data.ok)
+                    window.location ="/login/successful"
+
+                else
+                {
+                    setError(data.message)
+                    disableInput =false;
+                }
+
+
 
             })
             .catch(err=>{
                 console.log(err)
+                disableInput = false;
+
             } )
-        e.preventDefault();
 
     }
 
@@ -66,7 +74,6 @@ export function LoginPage() {
                    className={"orangeBtn roundedCorners_lite register_button"}/></a>
 
         </form>
-        {redirect && < Redirect to={redirect}/>}
 
     </div>
 
