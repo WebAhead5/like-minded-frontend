@@ -17,7 +17,8 @@ import {
 import "./tools/recoil/recoilStates"
 import {LoginPage} from "./components/pages/loginPage/loginPage";
 import ProfileInputField from "./components/common/profileInputField/profileInputField";
-
+import ProfileGallery from "./components/common/profileGallery/profileGallery"
+import EditProfilePage from "./components/pages/editProfilePage/editProfilePage"
 // import {reduce} from 'immer'
 
 
@@ -35,8 +36,8 @@ function App() {
                         <LoginPage />
                     </Route>
 
-                    <Route exact  path="/profileInput">
-                        <ProfileInputField />
+                    <Route path="/editProfile">
+                        <EditProfilePage />
                     </Route>
 
                     <Route  exact  path="/">
