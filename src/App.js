@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {
     Switch,
-    Route,
+    Route, Redirect,
 } from "react-router-dom";
 
 //recoil imports-------------------------------------------------------------------
@@ -10,14 +10,16 @@ import {
 //pages----------------------------------------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
 import ProfileRoutes from "./components/routes/profileRoutes";
-import Settings from './components/pages/settings/settings'
-import NavBar from "./components/common/navBar/navBar";
+import MessageRoutes from "./components/routes/messageRoutes";
+
+
 
 import {
      useRecoilValue,
 } from 'recoil';
 import {loggedInState} from "./tools/recoil/recoilStates";
-
+import NavBar from "./components/common/navBar/navBar";
+import Dashboard from "./components/pages/dashboard/dashboard";
 
 
 
@@ -27,11 +29,20 @@ function App() {
 
     return (
         <div>
-            {/* {isLoggedIn? <NavBar/>: null } */}
-            <NavBar/>
+            {isLoggedIn? <NavBar/>: null }
+
+            <Route exact path="/dashboard" render={() =>
+            {
+                if(isLoggedIn)
+                    return  <Dashboard/>
+                return <Redirect to={"/login"}/>
+
+            }}/>
+
             <AuthRoutes/>
             <ProfileRoutes/>
-            <Settings/>
+            <MessageRoutes/>
+
         </div>
     );
 }

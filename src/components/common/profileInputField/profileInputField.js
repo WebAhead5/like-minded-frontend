@@ -2,7 +2,7 @@ import React from 'react';
 import "./profileInputField.css"
 
 function profileInputField({ canEdit = true, onChange
-    , content, title, placeHolder="", rowCount=1 }) {
+    , content ="", title, placeHolder="", rowCount=1 }) {
 
     // const [content, setContent] = useState("")
     function textField() {
@@ -11,7 +11,6 @@ function profileInputField({ canEdit = true, onChange
                       type={"text"}
                       value={content}
                       placeholder={placeHolder}
-                      content={content}
                       onChange={(e) => canEdit && onChange && onChange(e.target.value)}/>
 
     }
