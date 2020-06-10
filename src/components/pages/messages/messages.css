@@ -1,0 +1,17 @@
+.messages{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    height: 100vh;
+
+}
+
+
+
+.messages_blocks{
+    width: max( 60% , 300px );
+
+}
