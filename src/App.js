@@ -17,7 +17,7 @@ import {
 import "./tools/recoil/recoilStates"
 import {LoginPage} from "./components/pages/loginPage/loginPage";
 import Dashboard from "./components/pages/dashboard/dashboard";
-
+import {Registration} from "./components/pages/registration/registration";
 import EditProfilePage from "./components/pages/editProfilePage/editProfilePage"
 // import {reduce} from 'immer'
 
@@ -32,8 +32,13 @@ function App() {
                     <Route exact  path="/login/successful"  >
                         test
                     </Route>
+
                     <Route exact  path="/login">
                         <LoginPage />
+                    </Route>
+
+                    <Route exact  path="/register">
+                        <Registration />
                     </Route>
 
                     <Route exact  path="/dashboard">

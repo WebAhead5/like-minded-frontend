@@ -1,5 +1,6 @@
 import CandidateImages from "../../common/candidateImages/candidateImages";
 import CandidateSuggestion from "../../common/candidateSuggestion/candidateSuggestion"
+import DashboardQuizSummary from "../../common/dashboardQuizSummary/dashboardQuizSummary"
 
 import React from "react";
 // import "./";
@@ -18,6 +19,7 @@ function Dashboard({ canEdit, onChange, imagesArr }) {
         <div className="dashboard ">
             <CandidateImages />
             <CandidateSuggestion />
+            <DashboardQuizSummary />
         </div>
     );
 }

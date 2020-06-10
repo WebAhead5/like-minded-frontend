@@ -12,11 +12,12 @@
 
 }
 
-.textField label{
-    width: content-box;
+.textField p, label{
+    width: 20%;
     text-align: center;
     font-weight: bold;
     box-sizing: border-box;
+    font-size: 10px;
 
 }
 .textField input{
@@ -24,5 +25,5 @@
     margin-left: 5px;
     padding: 0 5px;
     box-sizing: border-box;
-
 }
+

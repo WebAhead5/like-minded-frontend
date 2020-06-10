@@ -4,7 +4,9 @@ const { useState } = React;
 
 const defaultImage = "/images/defaultImageProfile.png";
 
-function CandidateSuggestion({ imagesArr }) {
+function CandidateSuggestion({ userProfile }) {
+
+    const [expandedState, setExpandedState] = useState(false)
 
     return (
         <div className="candidateSuggestion">
