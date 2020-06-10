@@ -1,62 +1,36 @@
 //react imports--------------------------------------------------------------------
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
-    Redirect
 } from "react-router-dom";
 
 //recoil imports-------------------------------------------------------------------
+
+//pages----------------------------------------------------------------------------------
+import AuthRoutes from "./components/routes/authRoutes";
+import ProfileRoutes from "./components/routes/profileRoutes";
+
+
+
+
 import {
-    RecoilRoot,
-    selector,
-    useRecoilState,
-    useRecoilValue,
+     useRecoilValue,
 } from 'recoil';
-import "./tools/recoil/recoilStates"
-import {LoginPage} from "./components/pages/loginPage/loginPage";
-import Dashboard from "./components/pages/dashboard/dashboard";
-import {Registration} from "./components/pages/registration/registration";
-import EditProfilePage from "./components/pages/editProfilePage/editProfilePage"
-// import {reduce} from 'immer'
+import {loggedInState} from "./tools/recoil/recoilStates";
+import NavBar from "./components/common/navBar/navBar";
 
 
 
 function App() {
+    const isLoggedIn = useRecoilValue(loggedInState)
 
     return (
-        <RecoilRoot>
-            <div>
-                <Switch>
-                    <Route exact  path="/login/successful"  >
-                        test
-                    </Route>
-
-                    <Route exact  path="/login">
-                        <LoginPage />
-                    </Route>
-
-                    <Route exact  path="/register">
-                        <Registration />
-                    </Route>
-
-                    <Route exact  path="/dashboard">
-                        <Dashboard />
-                    </Route>
-
-                    <Route path="/editProfile">
-                        <EditProfilePage />
-                    </Route>
-
-                    <Route  exact  path="/">
-                        home
-                    </Route>
-
-
-                </Switch>
-            </div>
-        </RecoilRoot>
+        <div>
+            {isLoggedIn? <NavBar/> : null}
+            <AuthRoutes/>
+            <ProfileRoutes/>
+        </div>
     );
 }
 
