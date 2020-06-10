@@ -1,10 +1,7 @@
 import {atom, selector,atomFamily} from "recoil";
 import * as keys from "./stateKeys"
 import Axios from "axios";
-import {createBrowserHistory } from "react-router-dom"
 
-
-export const historyObj= createBrowserHistory()
 
 
 export const profileState = selector({
@@ -32,21 +29,11 @@ export const profileState = selector({
     }
 });
 
-export const routeState = atom({
+export const currentRouteState = atom({
     key: keys.ROUTE_STATE_KEY,
     default: "/login"
 });
-export const currentRouteState = atom({
-    key: keys.ROUTE_STATE_KEY,
-    set : ({get,set},newRoute)=>{
-        set(routeState,newRoute)
-    },
-    get:(cb)=>{
 
-        return  history.location
-    },
-
-});
 
 
 export const loggedInState = selector({

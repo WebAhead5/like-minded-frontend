@@ -63,7 +63,7 @@ function AuthRoutes(props) {
 
 
             { currentRoute ==="/login/successful"?
-                requireLogin("/login",()=>setRoute("/login"))
+                requireLogin("/login",()=>setRoute("/dashboard"))
                 : ""}
 
 
