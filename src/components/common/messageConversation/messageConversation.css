@@ -1,0 +1,66 @@
+p#pending{
+    width: 90%;
+    text-align: right;
+    text-shadow: 0px 4px 3px rgba(119,119,119,0.68);
+}
+
+.messagePreviews_content {
+    background: #F5F5F5;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+div.messagePreviews {
+    width: 90%;
+    height: max-content;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 1px 4px 1px rgba(121, 121, 121, 0.44);
+    font-size: 10px;
+}
+
+.messagePreviews img {
+    border-radius: 50%;
+    height: 65px;
+    width: 65px;
+    color: rgb(190, 190, 190);
+    padding: 10px;
+}
+
+
+div.nameAndMessage {
+    width: 50%;
+    text-align: left;
+    padding-left: 20px;
+}
+
+p#candidateName {
+    font-size: 17px;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+}
+
+p#messagePreview {
+    color: silver;
+}
+
+div.newAndTime {
+    width: 30%;
+}
+
+p#new{
+    color: var(--color-red);
+    font-style: bold;
+    font-size: 18px;
+    margin: 30px 0 0 0;
+    padding:0;
+    text-shadow: 0px 4px 3px rgba(119,119,119,0.68);
+}
+
+p#timeSince{
+    margin: 10px 0 0 0;
+    padding:0;
+}
