@@ -4,9 +4,11 @@ div.navBar {
     display: flex;
     position: fixed;
     width: 100%;
+    max-width: 500px;
     align-items: center;
     justify-content: space-between;
     padding: 0;
+    z-index: 999;
 }
 
 .navBar a {

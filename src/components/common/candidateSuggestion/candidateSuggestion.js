@@ -10,11 +10,14 @@ function CandidateSuggestion({ userProfile }) {
 
     return (
         <div className="candidateSuggestion">
-            <img src={defaultImage}></img>
-            <p class="candidateName">Dex Schneider</p>
-            <p class="distance">5km Away</p> 
-            <p class="bioPreview">"Hi I'm Dex Schneider... bio text lorem ipsum... ya ya.</p>
-            <p class="readMoreButton">Read more</p>
+            <p>Discover</p>
+            <div className="candidateSuggestion box-shadow width90">
+                <img src={defaultImage}></img>
+                <p className="candidateName">Dex Schneider</p>
+                <p className="distance">5km Away</p>
+                <p className="bioPreview">"Hi I'm Dex Schneider... bio text lorem ipsum... ya ya.</p>
+                <p className="readMoreButton">Read more</p>
+            </div>
         </div>
     )
 }
