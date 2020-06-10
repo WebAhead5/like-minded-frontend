@@ -1,28 +1,29 @@
-import React, {useState} from 'react';
-import {Redirect, Route,Switch , BrowserRouter as Router} from "react-router-dom";
+import React from  'react';
+import {Redirect, Route,Switch } from "react-router-dom";
 import {LoginPage} from "../pages/loginPage/loginPage";
-import {loggedInState, profileState, settingsState} from "../../tools/recoil/recoilStates";
+import * as states from "../../tools/recoil/recoilStates";
 import {useRecoilState, useRecoilValue} from "recoil";
 import Axios from "axios";
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
 
 
 function AuthRoutes(props) {
-    const isLoggedIn = useRecoilValue(loggedInState)
-    const [profile, setProfile] = useRecoilState(profileState)
-    const [settings, setSettings] = useRecoilState(settingsState)
+    const isLoggedIn = useRecoilValue(states.loggedInState)
+    const [profile, setProfile] = useRecoilState(states.profileState)
+    const [settings, setSettings] = useRecoilState(states.settingsState)
 
+    let fetching = false;
     function fetchUserDate(cb) {
+        if(fetching)
+            return;
+        fetching = true;
+        Axios.get("/api/auth/currentUser").then(({data: res}) => {
 
-
-        Axios.get("/api/auth/currentUser").then(({data:res}) => {
-            console.log(res)
             if (res.ok) {
                 setProfile(res.data.profile)
                 setSettings(res.data.settings)
             }
-
-             if(cb) cb()
+            if (cb) cb()
 
         })
     }
@@ -40,6 +41,8 @@ function AuthRoutes(props) {
 
     return (
         <Switch>
+
+
 
 
             <Route exact path="/register" render={(props) => {

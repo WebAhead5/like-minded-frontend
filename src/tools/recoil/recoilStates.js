@@ -1,8 +1,8 @@
-import {atom, selector} from "recoil";
+import {atom, selector,atomFamily} from "recoil";
 import * as keys from "./stateKeys"
 import Axios from "axios";
 
-export const profileState = atom({
+export const profileState = atom( {
     key: keys.PROFILE_STATE,
     default: {},
 
@@ -20,12 +20,14 @@ export const loggedInState = selector({
      }
 });
 
+
+
 export const settingsState = atom({
     key: keys.SETTINGS_STATE,
-    default: {},
+    default:  {},
 });
 
 export const quizzesState = atom({
     key: keys.QUIZZES_STATE,
-    default: {},
+    default:  {},
 });

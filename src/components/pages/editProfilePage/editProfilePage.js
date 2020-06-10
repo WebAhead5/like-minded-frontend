@@ -4,18 +4,14 @@ import React from "react";
 import  "./editProfilePage.css";
 import {useRecoilState, useRecoilValue,} from "recoil";
 import {profileState,loggedInState} from "../../../tools/recoil/recoilStates"
-import {Redirect} from "react-router-dom";
 
 
 
 
 function EditProfilePage( ) {
-    // const [content, setContent] = useState("")
-    const [profile,setProfile] = useRecoilState(profileState);
+    const [profile, setProfile] = useRecoilState(profileState)
     const isLoggedIn = useRecoilValue(loggedInState);
-    // console.log(profileDate)
 
-    return <div>{JSON.stringify(profile)}</div>
     return (
         <div className="editProfilePage">
             <main className="editProfilePage_content" >
@@ -30,3 +26,5 @@ function EditProfilePage( ) {
 }
 
 export default EditProfilePage;
+
+

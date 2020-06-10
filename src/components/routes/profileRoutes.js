@@ -1,14 +1,14 @@
 import React from 'react';
 import {Redirect, Route,Switch} from "react-router-dom";
-import {loggedInState} from "../../tools/recoil/recoilStates";
+import * as states from "../../tools/recoil/recoilStates";
 import {useRecoilValue} from "recoil";
 import EditProfilePage from "../pages/editProfilePage/editProfilePage";
-import RegisterPage from "../pages/RegisterPage/RegisterPage";
 
 
 function ProfileRoutes(props) {
 
-    const isLoggedIn = useRecoilValue(loggedInState)
+    const isLoggedIn = useRecoilValue(states.loggedInState)
+
 
 
     return (
@@ -18,7 +18,7 @@ function ProfileRoutes(props) {
                 if (isLoggedIn)
                     return  "needs implementing"
 
-                return <Redirect to={"/login"}/>
+                // return <Redirect to={"/login"}/>
             }}/>
 
 

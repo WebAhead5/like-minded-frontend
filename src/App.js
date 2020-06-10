@@ -3,29 +3,40 @@ import React, {useState} from 'react';
 import {
     Switch,
     Route,
-    Redirect
 } from "react-router-dom";
 
 //recoil imports-------------------------------------------------------------------
-import {
-    RecoilRoot,
-    selector,
-    useRecoilState,
-    useRecoilValue, useSetRecoilState,
-} from 'recoil';
-import {loggedInState, profileState} from "./tools/recoil/recoilStates";
 
 //pages----------------------------------------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
-import EditProfilePage from "./components/pages/editProfilePage/editProfilePage";
 import ProfileRoutes from "./components/routes/profileRoutes";
 
 
 
+
+import {
+     useRecoilValue,
+} from 'recoil';
+import * as states from "./tools/recoil/recoilStates";
+import TestComponent from "./components/testComponent";
+
+
+
 function App() {
+    const profile = useRecoilValue(states.profileState)
 
     return (
         <div>
+            {JSON.stringify(profile)}
+
+
+            <Switch>
+                <Route exact path={"/dashboard"} render={() => {
+                      return  <TestComponent/>
+                    }}/>
+            </Switch>
+
+
             <AuthRoutes/>
             <ProfileRoutes/>
         </div>

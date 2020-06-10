@@ -5,15 +5,15 @@ import './index.css';
 import App from './App';
 import {RecoilRoot} from "recoil"
 ReactDOM.render(
-    <React.StrictMode>
-          <RecoilRoot>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                      <BrowserRouter>
-                            <App />
-                      </BrowserRouter>
-                </React.Suspense>
-          </RecoilRoot>
-    </React.StrictMode>,
+    <BrowserRouter>
+        <RecoilRoot>
+            <React.Suspense fallback={<div>Loading...</div>}>
+                <App />
+            </React.Suspense>
+        </RecoilRoot>
+    </BrowserRouter>
+
+    ,
     document.getElementById('root')
 );
 
