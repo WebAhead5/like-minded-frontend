@@ -6,7 +6,7 @@ import "./registration.css"
 import "../../../index.css"
 import { Redirect } from "react-router-dom";
 
-export function Registration() {
+function Registration() {
 
     const [form, setForm] = useState({});
     const [error, setError] = useState("");
@@ -79,6 +79,6 @@ export function Registration() {
         {redirect && < Redirect to={redirect} />}
 
     </div>
-
-
 }
+
+export default Registration

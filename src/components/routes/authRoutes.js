@@ -4,7 +4,7 @@ import {LoginPage} from "../pages/loginPage/loginPage";
 import * as states from "../../tools/recoil/recoilStates";
 import {useRecoilState, useRecoilValue} from "recoil";
 import Axios from "axios";
-import RegisterPage from "../pages/RegisterPage/RegisterPage";
+import Registration from "../pages/registration/registration";
 
 
 function AuthRoutes(props) {
@@ -49,7 +49,7 @@ function AuthRoutes(props) {
                 if (isLoggedIn)
                     return  <Redirect to={"/dashboard"}/>
 
-                return <RegisterPage />
+                return <Registration />
             }}/>
 
             <Route exact path="/login/successful" render={(props) => {

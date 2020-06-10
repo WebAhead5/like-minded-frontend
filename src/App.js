@@ -10,14 +10,14 @@ import {
 //pages----------------------------------------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
 import ProfileRoutes from "./components/routes/profileRoutes";
-import Messages from './components/pages/messages/messages'
-
+import Settings from './components/pages/settings/settings'
+import NavBar from "./components/common/navBar/navBar";
 
 import {
      useRecoilValue,
 } from 'recoil';
 import {loggedInState} from "./tools/recoil/recoilStates";
-import NavBar from "./components/common/navBar/navBar";
+
 
 
 
@@ -27,10 +27,11 @@ function App() {
 
     return (
         <div>
-            {isLoggedIn? <NavBar/>: null }
+            {/* {isLoggedIn? <NavBar/>: null } */}
+            <NavBar/>
             <AuthRoutes/>
             <ProfileRoutes/>
-            <Messages/>
+            <Settings/>
         </div>
     );
 }
