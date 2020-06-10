@@ -10,6 +10,7 @@ import {
 //pages----------------------------------------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
 import ProfileRoutes from "./components/routes/profileRoutes";
+import MatchPopup from "./components/common/matchPopup/matchPopup"
 
 
 
@@ -27,9 +28,11 @@ function App() {
 
     return (
         <div>
-            {isLoggedIn? <NavBar/> : null}
+            {isLoggedIn? <NavBar/>: null }
             <AuthRoutes/>
             <ProfileRoutes/>
+            <MatchPopup/>
+
         </div>
     );
 }

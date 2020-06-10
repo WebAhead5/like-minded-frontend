@@ -1,0 +1,54 @@
+div.matchPopup {
+    display: block;
+    width: 100%;
+    height: 350px;
+    box-sizing: border-box;
+    position: relative;
+
+}
+
+.matchPopup img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    position: absolute;
+    border: 3px white solid;
+}
+
+img#candidatePic {
+    left: 9%;
+    top: 200px;
+    z-index: 1;
+}
+
+img#userPic {
+    right: 6%;
+    top: 30px;
+    z-index: 1;
+}
+
+div.outer {
+    position: absolute;
+    top: 60px;
+    align-items: center;
+    display: flex;
+    height: 250px;
+    justify-content: center;
+    width: 100%;
+    overflow: auto;
+    resize: both;
+}
+
+svg {
+    height: 100%;
+}
+
+circle {
+    fill: var(--color-red);
+}
+
+text {
+    fill: #fff;
+    font-size: 1rem;
+    color: white;
+}
