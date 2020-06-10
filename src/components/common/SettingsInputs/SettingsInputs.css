@@ -1,0 +1,81 @@
+div#settingsContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+div.slidecontainer {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+div.settingsInput {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    background-color: var(--var-background);
+    margin-bottom: 10px;
+    ;
+}
+
+.settingsInput>p {
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+.settingsInput>div {
+    padding: 0;
+    margin: 0;
+}
+
+input[type="range"].slider {
+    -webkit-appearance: none;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    height: 1px;
+    border-radius: 5px;
+    background: var(--color-navy);
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    cursor: pointer;
+}
+
+div.showYourAge {
+    display: flex;
+}
+
+.fieldWrapper_content p {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 20%;
+}
+
+label.agePrivacy {
+    color: white;
+    background-color: var(--color-red);
+    width: 60px;
+    padding: 10px 20px;
+    font-size: 10px;
+    border-radius: 4px;
+}
+
+.radioButtons input[type="radio"]:checked+label {
+    background-color: #bfb;
+    border-color: #4c4;
+    color: black;
+}
+

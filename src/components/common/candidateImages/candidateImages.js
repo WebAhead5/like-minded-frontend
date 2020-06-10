@@ -14,7 +14,7 @@ function CandidateImages({ imagesArr }) {
 
     return (
         <div className="candidateImages">
-            <img src={defaultImage}></img>
+            <img src={defaultImage} alt="candidate"></img>
             <div className="dotsContainer">
                 {
                     imagesArr1.map((eachImage, index) => {

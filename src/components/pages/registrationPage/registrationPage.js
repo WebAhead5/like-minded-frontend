@@ -100,6 +100,6 @@ export function RegistrationPage() {
         </form>
 
     </div>
-
-
 }
+
+export default RegistrationPage
