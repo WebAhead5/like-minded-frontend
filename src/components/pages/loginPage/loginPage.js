@@ -66,8 +66,9 @@ export function LoginPage() {
             <h2 className={"register_error"} >{error}</h2>
 
             <input type="submit" value={"Login"} className={"blackBtn roundedCorners_lite register_button"}/>
-            <input type="button" value={"Register"} className={"blackBtn roundedCorners_lite register_button"}/>
-
+            <Link to={"/register"}>
+                <input type="button" value={"Register"}  className={"blackBtn roundedCorners_lite register_button"}/>
+            </Link>
             <hr/>
 
             <a href={"/api/auth/google"}> <input type="button" value={"Sign in with Google"}

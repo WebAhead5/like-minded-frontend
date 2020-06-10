@@ -1,6 +1,7 @@
 div.radioButtons {
     display: flex;
     align-items: center;
+
 }
 
 .radioButtons p {
@@ -13,7 +14,7 @@ div.buttonsOnly{
     align-items: center;
     justify-content: space-around;
     height:20px;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
 }
 .radioButtons label {
     background-color: white;

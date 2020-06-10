@@ -1,31 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useRecoilState} from "recoil";
 import {profileState} from "../../../tools/recoil/recoilStates";
 import ProfileGallery from "../../common/profileGallery/profileGallery";
 import ProfileInputField from "../../common/profileInputField/profileInputField";
 import {Link} from "react-router-dom";
+import {getProfileData, setProfileData} from "../../../tools/data";
 
 function ProfilePage(props) {
 
-    const [profile, setProfile] = useRecoilState(profileState)
-    const [temp, setTemp] = useState(profile)
-    const {status, bio, primaryphoto, subphotos, firstname, lastname, livingin, job} = temp
+    const [profile,setProfile] = useState(null)
+    useEffect(()=> {
+        getProfileData().then(res => {
+            if(res)
+                setProfile(res)
+            else
+                window.location = "/login"
+        })
 
-    function updateValue(fieldName, newVal) {
+    },[])
 
-        setProfile({[fieldName]: newVal})
-        setTemp({...temp, [fieldName]: newVal})
 
+
+    function updateValue(obj) {
+
+        let newProf = {...profile,...obj}
+        setProfile(newProf)
+        setProfileData(newProf).then(ok => {
+            if(!ok)  getProfileData().then(data=>setProfile(data))
+        })
     }
+
+
+    if(!profile)
+        return <div>loading...</div>
+
 
     return (
         <div>
-            <ProfileGallery imagesArr={[primaryphoto, ...subphotos]} onChange={(arr) => {
-                updateValue("primaryphoto", arr[0])
-                updateValue("subphotos", arr.slice(1))
-            }
-            }/>
-            <span>{status}</span>
+            <ProfileGallery imagesArr={[profile.primaryphoto, ...profile.subphotos]} showSmall={false}/>
+            <span>{profile.status}</span>
 
             <Link to="/profile/edit">
                 <div>
