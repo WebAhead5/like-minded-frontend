@@ -17,26 +17,17 @@ import ProfileRoutes from "./components/routes/profileRoutes";
 import {
      useRecoilValue,
 } from 'recoil';
-import * as states from "./tools/recoil/recoilStates";
-import TestComponent from "./components/testComponent";
+import {loggedInState} from "./tools/recoil/recoilStates";
+import NavBar from "./components/common/navBar/navBar";
 
 
 
 function App() {
-    const profile = useRecoilValue(states.profileState)
+    const isLoggedIn = useRecoilValue(loggedInState)
 
     return (
         <div>
-            {JSON.stringify(profile)}
-
-
-            <Switch>
-                <Route exact path={"/dashboard"} render={() => {
-                      return  <TestComponent/>
-                    }}/>
-            </Switch>
-
-
+            {isLoggedIn? <NavBar/> : null}
             <AuthRoutes/>
             <ProfileRoutes/>
         </div>

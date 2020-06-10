@@ -3,6 +3,7 @@ import {Redirect, Route,Switch} from "react-router-dom";
 import * as states from "../../tools/recoil/recoilStates";
 import {useRecoilValue} from "recoil";
 import EditProfilePage from "../pages/editProfilePage/editProfilePage";
+import ProfilePage from "../pages/profile/profilePage";
 
 
 function ProfileRoutes(props) {
@@ -16,13 +17,13 @@ function ProfileRoutes(props) {
 
             <Route exact path="/profile" render={(props) => {
                 if (isLoggedIn)
-                    return  "needs implementing"
+                    return  <ProfilePage/>
 
                 // return <Redirect to={"/login"}/>
             }}/>
 
 
-            <Route exact path="/editProfile" render={(props) => {
+            <Route exact path="/profile/edit" render={(props) => {
                 if (isLoggedIn)
                     return < EditProfilePage />
 

@@ -1,25 +1,36 @@
 import ProfileInputField from "../../common/profileInputField/profileInputField";
 import ProfileGallery from "../../common/profileGallery/profileGallery"
-import React from "react";
+import React, {useEffect, useState} from "react";
 import  "./editProfilePage.css";
 import {useRecoilState, useRecoilValue,} from "recoil";
-import {profileState,loggedInState} from "../../../tools/recoil/recoilStates"
+import {profileState, loggedInState} from "../../../tools/recoil/recoilStates"
 
 
 
 
 function EditProfilePage( ) {
     const [profile, setProfile] = useRecoilState(profileState)
-    const isLoggedIn = useRecoilValue(loggedInState);
+    const [temp,setTemp] = useState(profile)
+    const {status,bio,primaryphoto,subphotos, firstname,lastname,livingin,job} = temp
+    function updateValue(fieldName,newVal) {
 
+        setProfile({[fieldName]: newVal})
+        setTemp({...temp, [fieldName]: newVal})
+
+    }
     return (
         <div className="editProfilePage">
+
             <main className="editProfilePage_content" >
-                <ProfileGallery imagesArr={isLoggedIn && [profile.primaryphoto , ...profile.subphotos]} onChange={(arr)=>console.log(arr)} />
-                <ProfileInputField title={"status"} content={""} placeHolder={"describe yourself in a sentence..."} />
-                <ProfileInputField title={"bio"} content={""} placeHolder={"bio..."} rowCount={5}/>
-                <ProfileInputField title={"job"} content={""} placeHolder={"job..."} />
-                <ProfileInputField title={"city "} content={""} placeHolder={"city..."} />
+                <ProfileGallery imagesArr={[primaryphoto , ...subphotos]} onChange={(arr)=>{
+                    updateValue("primaryphoto",arr[0])
+                    updateValue("subphotos",arr.slice(1))
+                }
+                } />
+                <ProfileInputField title={"status"} canEdit={true} content={status} placeHolder={"describe yourself in a sentence..."} onChange={(newVal)=>updateValue("status",newVal) }/>
+                <ProfileInputField title={"bio"} content={bio} placeHolder={"bio..."} rowCount={5} onChange={(newVal)=>updateValue("bio",newVal) }/>
+                <ProfileInputField title={"job"} content={job} placeHolder={"job..."} onChange={(newVal)=>updateValue("job",newVal) } />
+                <ProfileInputField title={"city "} content={livingin} placeHolder={"city..."} onChange={(newVal)=>updateValue("city",newVal) } />
             </main>
         </div>
     );
