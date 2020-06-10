@@ -1,27 +1,29 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {useRecoilState} from "recoil";
+import {currentRouteState} from "../../../tools/recoil/recoilStates";
 
 function NavBar(props) {
-    
-    
-    
+
+    const [currentRoute, setRoute] = useRecoilState(currentRouteState)
+
     return (
-        <div>
-            <Link to={"/profile"}>
+        <nav>
+            <a onClick={()=>setRoute("/profile")}>
                 <img src="/images/icon-nav-profile.png" alt=""/>
-            </Link>
+            </a>
 
-            <Link to={"/dashboard"}>
+            <a onClick={()=>setRoute("/dashboard")}>
                 <img src="/images/img-logo-192.png" alt=""/>
-            </Link>
+            </a>
 
-            <Link to={"/chat"}>
+            <a onClick={()=>setRoute("/chat")}>
                 <img src="/images/icon-nav-chat.png" alt=""/>
-            </Link>
+            </a>
 
 
 
-        </div>
+        </nav>
     );
 }
 

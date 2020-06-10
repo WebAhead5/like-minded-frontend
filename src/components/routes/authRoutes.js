@@ -1,20 +1,21 @@
 import React from  'react';
-import {Redirect, Route,Switch } from "react-router-dom";
 import {LoginPage} from "../pages/loginPage/loginPage";
 import * as states from "../../tools/recoil/recoilStates";
 import {useRecoilState, useRecoilValue} from "recoil";
 import Axios from "axios";
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
+import {currentRouteState} from "../../tools/recoil/recoilStates";
 
 
 function AuthRoutes(props) {
     const isLoggedIn = useRecoilValue(states.loggedInState)
     const [profile, setProfile] = useRecoilState(states.profileState)
     const [settings, setSettings] = useRecoilState(states.settingsState)
-
+    const [currentRoute, setRoute] = useRecoilState(currentRouteState)
     let fetching = false;
+
     function fetchUserDate(cb) {
-        if(fetching)
+        if (fetching)
             return;
         fetching = true;
         Axios.get("/api/auth/currentUser").then(({data: res}) => {
@@ -32,52 +33,52 @@ function AuthRoutes(props) {
     function logout(cb) {
 
         Axios.get("/api/auth/logout").then(({data: {ok}}) => {
-            if(ok)
+            if (ok)
                 console.log("logged out")
-            if(cb) cb()
+            if (cb) cb()
         })
     }
 
+    function requireLogin(redirectionRoute, cb) {
+        if (isLoggedIn)
+            if (cb)
+                return cb();
+            else setRoute(redirectionRoute)
+
+    }
+    function requireLoggedOut(redirectionRoute, cb) {
+        if (!isLoggedIn)
+            if (cb)
+                return cb();
+            else setRoute(redirectionRoute)
+    }
 
     return (
-        <Switch>
+        <div>
+
+            { currentRoute ==="/register"?
+                requireLoggedOut("/dashboard",()=><RegisterPage/>)
+                : ""}
 
 
 
-
-            <Route exact path="/register" render={(props) => {
-                if (isLoggedIn)
-                    return  <Redirect to={"/dashboard"}/>
-
-                return <RegisterPage />
-            }}/>
-
-            <Route exact path="/login/successful" render={(props) => {
-                if (isLoggedIn)
-                   return  fetchUserDate(()=>window.location="/login")
-
-                return <Redirect to={"/login"}/>
-            }}/>
+            { currentRoute ==="/login/successful"?
+                requireLogin("/login",()=>setRoute("/login"))
+                : ""}
 
 
-            <Route exact strict path="/logout" render={(props) => {
-                if (isLoggedIn)
-                   return  logout(()=>window.location="/login")
-
-                return <Redirect to={"/login"}/>
-
-            }}/>
+            { currentRoute ==="/logout"?
+                requireLogin("/login",()=>setRoute("/login"))
+                : ""}
 
 
-            <Route exact path="/login" render={(props) => {
-                if (isLoggedIn)
-                    return <Redirect to={"/dashboard"}/>
 
-                return <LoginPage/>
-            }}/>
+            { currentRoute ==="/login"?
+                requireLoggedOut("/dashboard",()=><LoginPage/>)
+                    : ""}
 
 
-        </Switch>
+        </div>
     );
 }
 

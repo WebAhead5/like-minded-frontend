@@ -1,12 +1,14 @@
 import {atom, selector,atomFamily} from "recoil";
 import * as keys from "./stateKeys"
 import Axios from "axios";
-import {LOGGED_IN} from "./stateKeys";
+import {createBrowserHistory } from "react-router-dom"
 
+
+export const historyObj= createBrowserHistory()
 
 
 export const profileState = selector({
-    key: keys.PROFILE_STATE,
+    key: keys.PROFILE_STATE_KEY,
     get: async ()=> {
         try {
             let {data:res} = await Axios.get("/api/auth/currentUser")
@@ -30,11 +32,25 @@ export const profileState = selector({
     }
 });
 
+export const routeState = atom({
+    key: keys.ROUTE_STATE_KEY,
+    default: "/login"
+});
+export const currentRouteState = atom({
+    key: keys.ROUTE_STATE_KEY,
+    set : ({get,set},newRoute)=>{
+        set(routeState,newRoute)
+    },
+    get:(cb)=>{
 
+        return  history.location
+    },
+
+});
 
 
 export const loggedInState = selector({
-    key: keys.LOGGED_IN,
+    key: keys.LOGGED_IN_KEY,
      get: async ()=> {
          try {
              let {data} = await Axios.get("/api/auth/currentUser")
@@ -49,11 +65,11 @@ export const loggedInState = selector({
 
 
 export const settingsState = atom({
-    key: keys.SETTINGS_STATE,
+    key: keys.SETTINGS_STATE_KEY,
     default:  {},
 });
 
 export const quizzesState = atom({
-    key: keys.QUIZZES_STATE,
+    key: keys.QUIZZES_STATE_KEY,
     default:  {},
 });

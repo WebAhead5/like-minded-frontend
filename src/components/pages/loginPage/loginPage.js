@@ -5,11 +5,14 @@ import TextField from "../../common/textField/textField";
 import "./loginPage.css"
 import "../../../index.css"
 import {Link} from "react-router-dom";
+import {useRecoilState} from "recoil";
+import {currentRouteState} from "../../../tools/recoil/recoilStates";
 
 export function LoginPage() {
 
     const [form, setForm] = useState({});
     const [error, setError] = useState("");
+    const [currentRoute, setRoute] = useRecoilState(currentRouteState)
 
     let disableInput = false;
 
@@ -26,7 +29,7 @@ export function LoginPage() {
             .then(({data})=>{
 
                 if(data.ok)
-                    window.location ="/login/successful"
+                    setRoute("/login/successful")
 
                 else
                 {

@@ -9,7 +9,7 @@ module.exports = function (app) {
         createProxyMiddleware({
             target:"https://like-minded-api.herokuapp.com/",
             pathRewrite: {
-                "^/api": "/",
+                "^/api": "",
             },
             changeOrigin: true,
 
