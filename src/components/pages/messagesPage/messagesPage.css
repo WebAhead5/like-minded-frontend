@@ -1,0 +1,29 @@
+.messagesPage {
+    padding: 0 25px;
+}
+
+.messagesPage_entriesContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.messagesPage_entries
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.messagesPage_entry{
+    margin-bottom: 20px;
+}
+
+.messagesPage_pending{
+
+text-align: right;
+}

@@ -3,11 +3,11 @@ div.navBar {
     background-color: var( --color-navy);
     display: flex;
     position: fixed;
+    top:0;
     width: 100%;
-    max-width: 500px;
+    /*max-width: 500px;*/
     align-items: center;
     justify-content: space-between;
-    padding: 0;
     z-index: 999;
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Messages from "../pages/messages/messages";
+import MessagesPage from "../pages/messagesPage/messagesPage";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {useRecoilValue} from "recoil";
 import * as states from "../../tools/recoil/recoilStates";
@@ -12,7 +12,7 @@ function MessageRoutes(props) {
 
             <Route exact path="/chat" render={() => {
                 if (isLoggedIn)
-                    return <Messages/>
+                    return <MessagesPage/>
 
                 return <Redirect to={"/login"}/>
 

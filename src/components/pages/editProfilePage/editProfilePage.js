@@ -14,6 +14,8 @@ function EditProfilePage( ) {
     const [profile,setProfile] = useState(null)
     useEffect(()=> {
         getProfileData().then(res => {
+            if(!setProfile)
+                return;
             if(res)
                 setProfile(res)
             else
@@ -26,10 +28,14 @@ function EditProfilePage( ) {
 
     function updateValue(obj) {
 
-        let newProf = {...profile,...obj}
+        let newProf = {...profile, ...obj}
         setProfile(newProf)
         setProfileData(newProf).then(ok => {
-            if(!ok)  getProfileData().then(data=>setProfile(data))
+            if (!ok) getProfileData().then(data => {
+                if (!setProfile)
+                    return;
+                else setProfile(data)
+            })
         })
     }
 

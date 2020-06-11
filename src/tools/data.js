@@ -9,6 +9,7 @@ export async function getProfileData(){
         return data.data.profile;
         return false
     } catch (e) {
+
         return false;
     }
 }
@@ -23,6 +24,22 @@ export async function setProfileData(data) {
         console.log(res)
 
         return (res.ok)
+
+    } catch (e) {
+        return false;
+    }
+}
+
+export async function getChats() {
+
+    try {
+
+        let {data: res} = await Axios.get("/api/chats")
+        console.log(res)
+        if(res.ok)
+            return res.data;
+
+        return []
 
     } catch (e) {
         return false;

@@ -10,10 +10,13 @@ export const profileState = selector({
     get: async ()=> {
         try {
             let {data:res} = await Axios.get("/api/auth/currentUser")
+
             if(res.ok)
                 return res.data.profile
             return false
         } catch (e) {
+            console.log(e)
+
             return false;
         }
     },

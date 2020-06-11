@@ -9,7 +9,7 @@ function Dashboard({ canEdit, onChange, imagesArr }) {
 
     return (
         <div className="dashboard ">needs work
-            <CandidateImages />
+            {/*<CandidateImages />*/}
             {/*<CandidateSuggestion />*/}
             {/*<DashboardQuizSummary />*/}
         </div>
