@@ -1,39 +1,52 @@
-import React, {Fragment, useEffect,useState } from 'react';
 import {isLoggedIn} from "../../tools/data";
 
 
-function IfLoggedIn({children , cb ,elseCb,not}) {
+import React, {Component} from 'react';
 
-    const [loaded, setLoaded] = useState(false);
+class IfLoggedIn extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loaded: false,
+        };
+        this.canceled = false
+    }
 
-    useEffect(()=> {
-            let canceled = false;
-            (async () => {
-                let res = await isLoggedIn()
-
-                if(canceled)
-                    return ;
-
-                if (not)
-                    res = !res;
-
-                if (res)
-                    cb && cb()
-
-                else
-                    elseCb && elseCb()
-
-                setLoaded && setLoaded(res)
-            })()
-            return () => canceled = true
-        }
-        ,[])
+    componentDidMount() {
+        isLoggedIn().then(res => {
+            let {cb,elseCb, not} = this.props;
 
 
-    return (<Fragment>{loaded?children:null}</Fragment>);
+            if (not)
+                res = !res;
 
+            if (res)
+                cb && cb()
+
+            else
+                elseCb && elseCb()
+
+            if(this.canceled)
+                return
+
+
+            this.setState({loaded:res})
+
+        })
+
+    }
+
+    componentWillUnmount() {
+       this.canceled = true;
+    }
+
+    render() {
+        let {loaded } = this.state
+        let {children} = this.props
+        return (<div>{loaded?children:null}</div>);
+    }
 }
 
-
 export default IfLoggedIn;
+

@@ -16,7 +16,7 @@ function NavBar(props) {
                 <img className="logo" src="/images/img-logo-192.png" alt=""/>
             </Link>
 
-            <Link to={"/chat"}>
+            <Link to={"/chats"}>
                 <img src="/images/icon-nav-chat.png" alt=""/>
             </Link>
 

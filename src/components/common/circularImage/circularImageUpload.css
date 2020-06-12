@@ -1,0 +1,16 @@
+
+.circularImageUpload{
+    position: relative;
+    height: 130px;
+    width: 130px
+}
+
+
+.circularImageUpload_addIcon{
+
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right:5px;
+    bottom:0;
+}

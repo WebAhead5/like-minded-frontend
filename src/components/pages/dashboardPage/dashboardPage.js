@@ -1,10 +1,10 @@
-import CandidateImages from "../../common/candidateImages/candidateImages";
-import CandidateSuggestion from "../../common/candidateSuggestion/candidateSuggestion"
-import DashboardQuizSummary from "../../common/dashboardQuizSummary/dashboardQuizSummary"
+import CandidateImages from "../../notDone/candidateImages/candidateImages";
+import CandidateSuggestion from "../../notDone/candidateSuggestion/candidateSuggestion"
+import DashboardQuizSummary from "../../notDone/dashboardQuizSummary/dashboardQuizSummary"
 
 import React, {Fragment} from "react";
 import NavBar from "../../common/navBar/navBar";
-import ProfileGallery from "../../common/profileGallery/profileGallery";
+import EditProfile_imagesSelection from "../../common/editProfile_imagesSelection/editProfile_imagesSelection";
 import ProfileInputField from "../../common/profileInputField/profileInputField";
 
 function DashboardPage({ canEdit, onChange, imagesArr }) {
@@ -15,7 +15,7 @@ function DashboardPage({ canEdit, onChange, imagesArr }) {
             {/*<CandidateImages />*/}
             {/*<CandidateSuggestion />*/}
             {/*<DashboardQuizSummary />*/}
-            <ProfileGallery/>
+            <EditProfile_imagesSelection/>
             <ProfileInputField/>
         </div>
     );

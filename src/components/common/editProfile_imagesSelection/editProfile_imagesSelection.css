@@ -1,0 +1,20 @@
+.ep_imagesSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: content-box;
+}
+.ep_imagesSelection_primaryImg{
+    margin-bottom: 10px;
+}
+
+.ep_imagesSelection_subImagesContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.ep_imagesSelection_subImg{
+    margin: 0 5px;
+    width: 100px !important;
+    height: 100px !important;;
+}

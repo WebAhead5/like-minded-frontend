@@ -31,7 +31,6 @@ export async function setProfileData(data) {
     try {
         data.userId = undefined
         data.userid = undefined
-        console.log(data)
         let {data: res} = await Axios.post("/api/userProfile", data)
         console.log(res)
 
@@ -66,9 +65,7 @@ export async function isLoggedIn() {
     try {
 
         let {data: res} = await Axios.get("/api/auth/isLoggedIn")
-        if(!res.ok)
-            console.error("something went wrong on our end")
-        return res.ok && res.data;
+        return res.data;
 
     } catch (e) {
         console.error("something went wrong on our end")

@@ -24,7 +24,7 @@ export function LoginPage() {
 
         logIn(form).then((data) => {
             if (data.ok)
-                history.push("/login/successful")
+                history.push("/")
             else
                 setError(data.message)
 

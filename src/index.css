@@ -1,9 +1,5 @@
 html, body{
-  height: 100%;
-}
-
-html{
-  /*background-color: black;*/
+  height: calc(100% - 50px);
 }
 
 body {

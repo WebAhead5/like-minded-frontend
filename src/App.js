@@ -1,10 +1,7 @@
 //react imports------------------------------------------------
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route} from "react-router-dom";
 
-//recoil imports-----------------------------------------------
-import {useRecoilState} from 'recoil';
-import * as states from "./tools/recoil/recoilAtoms";
 
 //pages imports------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
@@ -18,60 +15,82 @@ import IfLoggedIn from "./components/helpers/IfLoggedIn";
 
 //module imports-----------------------------------------------
 import {history} from "./tools/history";
-import {isLoggedIn} from "./tools/data";
+import {getLoggedInUserData, getProfileData, isLoggedIn, setProfileData} from "./tools/data";
+import Settings from "./components/pages/settings/settings";
 
 
 
 function App() {
 
-    const  [profile,setProfile] = useRecoilState(states.profileState)
-    const  [settings,setSettings] = useRecoilState(states.settingsState)
-    const  [chats,setChats] = useRecoilState(states.chatsSettings)
 
-    useEffect(()=>{
+    const [loading, setLoading] = useState(undefined)
+    const [profile, setProfile] = useState(undefined)
+    const [settings, setSettings] = useState(undefined)
+    const [messages, setMessages] = useState(undefined)
 
-        //in page redirect
-       const unlisten =  history.listen(()=>{
-           //todo validate login and update login state
-            //todo validate data with server
-       })
+    function loadData(cb) {
 
-        //on page load after refresh
-        window.onload = (e) => {
-            //todo load data from local storage
-            //todo validate loaded data with server
-            let count = localStorage.getItem("refreshCount");
-            localStorage.setItem("refreshCount",(isNaN(count)?0:parseInt(count)+1 ).toString())
-            console.log("hi")
-        };
+        (async function () {
 
-       //on page close before refresh
-        window.onload = (e) => {
-            //todo clear local storage if user is not logged in
-            (async ()=>{
-                let isLoggedIn = await isLoggedIn()
-                if(isLoggedIn)
-                {
-                    const dataToStore = { profile, settings, chats }
-                    localStorage.setItem("data", JSON.stringify(dataToStore))
-                }
-                else{
+            setLoading(true)
 
-                }
-            })()
+            console.log("loading")
+            let loggedIn = await isLoggedIn()
+             loggedIn = await isLoggedIn()
+            if (loggedIn) {
+                let {profile: prof, settings: sett, chats} = await getLoggedInUserData()
+                setSettings(sett)
+                setProfile(prof)
+                setMessages(chats)
+            }
 
-            //todo store data in local storage
+            else resetData()
+
+            cb && cb();
+
+            setLoading(false)
 
 
-        };
+        })()
 
-        //cleanup
-        return()=>{
-            unlisten();
-            window.onload =null
+    }
+    function resetData(){
+        setSettings(undefined)
+        setProfile(undefined)
+        setMessages(undefined)
+    }
 
-        }
-    },[])
+    useEffect(() => {loadData();}, [])
+
+    let dataObj = {
+        get profile() {
+         return profile;
+        },
+        get messages(){
+            return messages
+        },
+        get chats(){
+            return messages
+        },
+        get settings(){
+            return settings
+        },
+        setProfile: (newVal)=>{
+            newVal={...profile,...newVal}
+            setProfile(newVal)
+            setProfileData(newVal).then(ok=>{
+                if(!ok)
+                    getProfileData().then(data=> setProfile(data))
+            })
+        },
+        setSettings,
+        setMessages,
+        setChats: setMessages
+    }
+
+
+    if (loading)
+        return <div>loading....</div>
 
 
     return (
@@ -79,16 +98,24 @@ function App() {
             <IfLoggedIn>
                 <NavBar/>
             </IfLoggedIn>
-            {JSON.stringify(profile)}
 
-            <Route exact path="/dashboard" render={()=>
-                <IfLoggedIn elseCb={()=>history.push("/login")} ><DashboardPage/></IfLoggedIn>
-            }/>
+            {/*{JSON.stringify(messages)}*/}
+
+            <Route exact path="/">
+                <IfLoggedIn cb={() =>
+                    loadData(() => history.push("/dashboard"))  }
+                            elseCb={() => history.push("/login")}/>
+
+            </Route>
+
+
+            <Route exact path="/dashboard">
+                <IfLoggedIn elseCb={()=>history.push("/login")} ><DashboardPage/> </IfLoggedIn>
+            </Route>
 
             <AuthRoutes/>
-            <ProfileRoutes/>
-            <MessageRoutes/>
-
+            <ProfileRoutes data={dataObj} />
+            <MessageRoutes data={dataObj}/>
         </div>
     );
 }

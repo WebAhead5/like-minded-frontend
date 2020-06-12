@@ -28,7 +28,7 @@ export function RegistrationPage() {
             .then(({ data }) => {
                 console.log(data)
                 if (data.ok)
-                    window.location = "/login/successful"
+                    window.location = "/"
 
                 else
                     setError(data.message)
