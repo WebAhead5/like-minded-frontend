@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {useRecoilState} from "recoil";
-import {profileState} from "../../../tools/recoil/recoilStates";
+import {useRecoilState, useRecoilValue} from "recoil";
+import {profileState} from "../../../tools/recoil/recoilSelectors";
 import ProfileGallery from "../../common/profileGallery/profileGallery";
 import ProfileInputField from "../../common/profileInputField/profileInputField";
 import {Link} from "react-router-dom";
@@ -37,6 +37,7 @@ function ProfilePage(props) {
 
     return (
         <div>
+
             <ProfileGallery imagesArr={[profile.primaryphoto, ...profile.subphotos]} showSmall={false}/>
             <span>{profile.status}</span>
 

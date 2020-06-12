@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import {Router} from "react-router-dom";
 import './index.css';
 import App from './App';
 import {RecoilRoot} from "recoil"
+import {history} from "./tools/history";
+
 ReactDOM.render(
-    <BrowserRouter>
-        <RecoilRoot>
-            <React.Suspense fallback={<div>Loading...</div>}>
-                <App />
-            </React.Suspense>
-        </RecoilRoot>
-    </BrowserRouter>
+    <Router history={history}>
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <RecoilRoot>
+                <App/>
+            </RecoilRoot>
+        </React.Suspense>
+    </Router>
 
     ,
     document.getElementById('root')

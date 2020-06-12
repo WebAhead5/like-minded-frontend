@@ -3,7 +3,7 @@ import ProfileGallery from "../../common/profileGallery/profileGallery"
 import React, {useEffect, useState} from "react";
 import  "./editProfilePage.css";
 import {useRecoilState, useRecoilValue,} from "recoil";
-import {profileState, loggedInState} from "../../../tools/recoil/recoilStates"
+import {profileState, loggedInState} from "../../../tools/recoil/recoilSelectors"
 import {getProfileData, setProfileData} from "../../../tools/data";
 
 

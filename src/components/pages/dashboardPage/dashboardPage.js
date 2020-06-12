@@ -2,9 +2,12 @@ import CandidateImages from "../../common/candidateImages/candidateImages";
 import CandidateSuggestion from "../../common/candidateSuggestion/candidateSuggestion"
 import DashboardQuizSummary from "../../common/dashboardQuizSummary/dashboardQuizSummary"
 
-import React from "react";
+import React, {Fragment} from "react";
+import NavBar from "../../common/navBar/navBar";
+import ProfileGallery from "../../common/profileGallery/profileGallery";
+import ProfileInputField from "../../common/profileInputField/profileInputField";
 
-function Dashboard({ canEdit, onChange, imagesArr }) {
+function DashboardPage({ canEdit, onChange, imagesArr }) {
     // const [content, setContent] = useState("")
 
     return (
@@ -12,8 +15,10 @@ function Dashboard({ canEdit, onChange, imagesArr }) {
             {/*<CandidateImages />*/}
             {/*<CandidateSuggestion />*/}
             {/*<DashboardQuizSummary />*/}
+            <ProfileGallery/>
+            <ProfileInputField/>
         </div>
     );
 }
 
-export default Dashboard;
+export default DashboardPage;

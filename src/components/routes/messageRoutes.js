@@ -1,23 +1,24 @@
+//react imports------------------------------------------------
 import React from 'react';
-import MessagesPage from "../pages/messagesPage/messagesPage";
-import {Redirect, Route, Switch} from "react-router-dom";
-import {useRecoilValue} from "recoil";
-import * as states from "../../tools/recoil/recoilStates";
+import { Route, Switch} from "react-router-dom";
 
-function MessageRoutes(props) {
-    const isLoggedIn = useRecoilValue(states.loggedInState)
+//pages imports------------------------------------------------
+import MessagesPage from "../pages/messagesPage/messagesPage";
+
+//helper components import-------------------------------------
+import IfLoggedOut from "../helpers/IfLoggedOut";
+
+//module imports-----------------------------------------------
+import {history} from "../../tools/history";
+import {LoginPage} from "../pages/loginPage/loginPage";
+
+function MessageRoutes() {
 
     return (
         <Switch>
-
-            <Route exact path="/chat" render={() => {
-                if (isLoggedIn)
-                    return <MessagesPage/>
-
-                return <Redirect to={"/login"}/>
-
-            }}/>
-
+            <Route exact path="/chat" render={()=>
+                <IfLoggedOut cb={()=>history.push("/login")} ><MessagesPage/></IfLoggedOut>
+            }/>
         </Switch>
     );
 }

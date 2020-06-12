@@ -1,59 +1,93 @@
-//react imports--------------------------------------------------------------------
-import React, { useState, Fragment } from 'react';
-import {
-    Switch,
-    Route, Redirect,
-} from "react-router-dom";
+//react imports------------------------------------------------
+import React, {useEffect} from 'react';
+import {Route} from "react-router-dom";
 
-//recoil imports-------------------------------------------------------------------
+//recoil imports-----------------------------------------------
+import {useRecoilState} from 'recoil';
+import * as states from "./tools/recoil/recoilAtoms";
 
-//pages----------------------------------------------------------------------------------
+//pages imports------------------------------------------------
 import AuthRoutes from "./components/routes/authRoutes";
 import ProfileRoutes from "./components/routes/profileRoutes";
 import MessageRoutes from "./components/routes/messageRoutes";
+import DashboardPage from "./components/pages/dashboardPage/dashboardPage";
 
-
-
-import {
-    useRecoilValue,
-} from 'recoil';
-import { loggedInState } from "./tools/recoil/recoilStates";
+//helper components import-------------------------------------
 import NavBar from "./components/common/navBar/navBar";
-import Dashboard from "./components/pages/dashboard/dashboard";
-import CandidateImages from "./components/common/candidateImages/candidateImages"
-import ProfileGallery from "./components/common/profileGallery/profileGallery"
-import ProfileInputField from './components/common/profileInputField/profileInputField';
+import IfLoggedIn from "./components/helpers/IfLoggedIn";
 
+//module imports-----------------------------------------------
+import {history} from "./tools/history";
+import {isLoggedIn} from "./tools/data";
 
 
 
 function App() {
-    const isLoggedIn = useRecoilValue(loggedInState)
+
+    const  [profile,setProfile] = useRecoilState(states.profileState)
+    const  [settings,setSettings] = useRecoilState(states.settingsState)
+    const  [chats,setChats] = useRecoilState(states.chatsSettings)
+
+    useEffect(()=>{
+
+        //in page redirect
+       const unlisten =  history.listen(()=>{
+           //todo validate login and update login state
+            //todo validate data with server
+       })
+
+        //on page load after refresh
+        window.onload = (e) => {
+            //todo load data from local storage
+            //todo validate loaded data with server
+            let count = localStorage.getItem("refreshCount");
+            localStorage.setItem("refreshCount",(isNaN(count)?0:parseInt(count)+1 ).toString())
+            console.log("hi")
+        };
+
+       //on page close before refresh
+        window.onload = (e) => {
+            //todo clear local storage if user is not logged in
+            (async ()=>{
+                let isLoggedIn = await isLoggedIn()
+                if(isLoggedIn)
+                {
+                    const dataToStore = { profile, settings, chats }
+                    localStorage.setItem("data", JSON.stringify(dataToStore))
+                }
+                else{
+
+                }
+            })()
+
+            //todo store data in local storage
+
+
+        };
+
+        //cleanup
+        return()=>{
+            unlisten();
+            window.onload =null
+
+        }
+    },[])
+
 
     return (
         <div>
+            <IfLoggedIn>
+                <NavBar/>
+            </IfLoggedIn>
+            {JSON.stringify(profile)}
 
+            <Route exact path="/dashboard" render={()=>
+                <IfLoggedIn elseCb={()=>history.push("/login")} ><DashboardPage/></IfLoggedIn>
+            }/>
 
-            {isLoggedIn ? <NavBar /> : null}
-
-            <Route exact path="/dashboard" render={() => {
-                // if(isLoggedIn)
-                //     return  <Dashboard/>
-                // return <Redirect to={"/login"}/>
-                return (
-                    <Fragment>
-                        <NavBar />
-                        <ProfileGallery />
-                        <ProfileInputField />
-
-                    </Fragment>
-                )
-
-            }} />
-
-            <AuthRoutes />
-            <ProfileRoutes />
-            <MessageRoutes />
+            <AuthRoutes/>
+            <ProfileRoutes/>
+            <MessageRoutes/>
 
         </div>
     );
