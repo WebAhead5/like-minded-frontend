@@ -1,6 +1,5 @@
 import React from 'react';
 import './matchPopup.css'
-import { Link } from "react-router-dom";
 
 const defaultImage = "/images/defaultImageProfile.png";
 

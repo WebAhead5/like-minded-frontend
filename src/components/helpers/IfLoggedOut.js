@@ -1,5 +1,4 @@
-import React, {Fragment, useEffect,useState} from 'react';
-import {isLoggedIn} from "../../tools/data";
+import React from 'react';
 import IfLoggedIn from "./IfLoggedIn";
 
 

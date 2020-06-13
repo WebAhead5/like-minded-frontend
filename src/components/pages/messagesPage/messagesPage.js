@@ -1,8 +1,7 @@
 import "./messagesPage.css"
 import "../../../index.css"
-import React, {useEffect} from "react";
+import React from "react";
 import ConversationEntry from "../../common/userEntry/conversationEntry";
-import {Link} from "react-router-dom";
 import {history} from "../../../tools/history";
 
 

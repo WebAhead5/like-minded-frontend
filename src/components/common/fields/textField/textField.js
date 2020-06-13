@@ -1,6 +1,5 @@
 import React from 'react';
 import "./textField.css"
-const {useState}= React;
 
 function TextField({title,placeHolder,inputType, onInput,value }) {
 

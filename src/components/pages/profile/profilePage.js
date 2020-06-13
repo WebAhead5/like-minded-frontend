@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import "./profilePage.css"
 import CircularImage from "../../common/circularImage/circularImage";
 import {history} from "../../../tools/history";

@@ -2,7 +2,7 @@ import Axios from "axios";
 
 export async function getLoggedInUserData() {
     try {
-        let {data: {ok, data,message}} = await Axios.get("/api/auth/currentUser")
+        let {data: {ok, data}} = await Axios.get("/api/auth/currentUser")
         if (!ok)
             console.error("something went wrong on our end")
         return data;

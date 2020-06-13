@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import Axios from "axios";
+import React, {useState} from "react";
 import InputFieldWrapper from "../../common/wrappers/inputFieldWrapper/inputFieldWrapper";
 import TextField from "../../common/fields/textField/textField";
 import "./loginPage.css"

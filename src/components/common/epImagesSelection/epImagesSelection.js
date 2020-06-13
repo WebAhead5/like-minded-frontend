@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import "./editProfile_imagesSelection.css";
+import "./epImagesSelection.css";
 import CircularImageUpload from "../circularImage/circularImageUpload";
 
 const {useState} = React;
@@ -7,7 +7,7 @@ const {useState} = React;
 
 const defaultImage = "/images/defaultImageProfile.png";
 
-function EditProfile_imagesSelection({onChange, initialImagesArr = [defaultImage, defaultImage, defaultImage, defaultImage]}) {
+function EpImagesSelection({onChange, initialImagesArr = [defaultImage, defaultImage, defaultImage, defaultImage]}) {
 
     const [imagesArrState, setImagesArrState] = useState(initialImagesArr)
 
@@ -51,4 +51,4 @@ function EditProfile_imagesSelection({onChange, initialImagesArr = [defaultImage
     );
 }
 
-export default EditProfile_imagesSelection;
+export default EpImagesSelection;

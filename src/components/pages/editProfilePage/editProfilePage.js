@@ -1,7 +1,7 @@
 
 import React from "react";
 import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
-import EditProfile_imagesSelection from "../../common/editProfile_imagesSelection/editProfile_imagesSelection"
+import EpImagesSelection from "../../common/epImagesSelection/epImagesSelection"
 import  "./editProfilePage.css";
 
 
@@ -20,7 +20,7 @@ function EditProfilePage({data: {profile,setProfile}}) {
             <main className="editProfilePage_content" >
 
 
-                <EditProfile_imagesSelection initialImagesArr={[profile.primaryphoto, ...profile.subphotos ]} onChange={(arr)=>{
+                <EpImagesSelection initialImagesArr={[profile.primaryphoto, ...profile.subphotos ]} onChange={(arr)=>{
                     updateProfile({"primaryphoto":arr[0] , "subphotos": arr.slice(1)})
                 }
                 } />
