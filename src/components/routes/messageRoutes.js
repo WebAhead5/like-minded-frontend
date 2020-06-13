@@ -22,11 +22,13 @@ function MessageRoutes({data}) {
                     <MessagesPage data={data}/>
                 </IfLoggedIn>
             </Route>
+
             <Route exact path="/pending">
                 <IfLoggedIn elseCb={() => history.push("/login")}>
                     <PendingPage data={data}/>
                 </IfLoggedIn>
             </Route>
+
             <Route exact path="/otherProfile">
                 <IfLoggedIn elseCb={() => history.push("/login")}>
                     <OtherUserProfile data={data}/>
