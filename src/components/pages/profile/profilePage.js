@@ -23,7 +23,7 @@ function ProfilePage({data: {profile}}) {
             <div className={"profilePage_buttonsContainer"}>
 
                 <div className={"profilePage_button"} onClick={() => history.push("/profile/edit")}>
-                    <img src="/images/icon-feather.png" alt="edit profile button icon"/>
+                    <img src="/images/icon-feather.svg" alt="edit profile button icon"/>
                     <span>Edit profile</span>
                 </div>
 

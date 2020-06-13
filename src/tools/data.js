@@ -2,7 +2,7 @@ import Axios from "axios";
 
 export async function getLoggedInUserData() {
     try {
-        let {data: {ok, data}} = await Axios.get("/api/auth/currentUser")
+        let {data: {ok, data,message}} = await Axios.get("/api/auth/currentUser")
         if (!ok)
             console.error("something went wrong on our end")
         return data;
@@ -41,12 +41,13 @@ export async function setProfileData(data) {
         return false;
     }
 }
+
+
 export async function getChats() {
 
     try {
 
         let {data: res} = await Axios.get("/api/chats")
-        console.log(res)
         if(res.ok)
             return res.data;
 
@@ -57,8 +58,35 @@ export async function getChats() {
     return [];
 
 }
+//todo set/send message
 
 
+export async function getPendingLikes() {
+    try {
+
+        let {data: res} = await Axios.get("/api/relationship/othersSelection/like")
+        if(res.ok)
+            return res.data.filter(x=>x.yourSelection === "none");
+
+    } catch (e) {
+        console.error("something went wrong on our end")
+    }
+
+    return [];
+}
+export async function setRelationship(otherId,status) {
+    try {
+
+        let {data: res} = await Axios.post(`/api/relationship/${otherId}/${status}`)
+        console.log(res)
+        return res.ok;
+
+    } catch (e) {
+        console.error("something went wrong on our end")
+    }
+
+    return false;
+}
 
 
 export async function isLoggedIn() {

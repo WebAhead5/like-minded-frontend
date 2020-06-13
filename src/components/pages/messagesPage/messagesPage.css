@@ -24,6 +24,9 @@
 }
 
 .messagesPage_pending{
-
-text-align: right;
+padding: 10px 0 ;
+margin-bottom: 10px;
+    box-shadow: black 0 0 3px;
+    font-size: large;
+    cursor: pointer;
 }

@@ -15,9 +15,14 @@ import IfLoggedIn from "./components/helpers/IfLoggedIn";
 
 //module imports-----------------------------------------------
 import {history} from "./tools/history";
-import {getLoggedInUserData, getProfileData, isLoggedIn, setProfileData} from "./tools/data";
-import Settings from "./components/pages/settings/settings";
-
+import {
+    getLoggedInUserData,
+    getPendingLikes,
+    isLoggedIn,
+    setProfileData,
+    setRelationship
+} from "./tools/data";
+import deepEquals from "deep-equal"
 
 
 function App() {
@@ -27,6 +32,7 @@ function App() {
     const [profile, setProfile] = useState(undefined)
     const [settings, setSettings] = useState(undefined)
     const [messages, setMessages] = useState(undefined)
+    const [pendingLikes, setPendingLikes] = useState(undefined)
 
     function loadData(cb) {
 
@@ -39,9 +45,17 @@ function App() {
              loggedIn = await isLoggedIn()
             if (loggedIn) {
                 let {profile: prof, settings: sett, chats} = await getLoggedInUserData()
-                setSettings(sett)
-                setProfile(prof)
-                setMessages(chats)
+                if(!deepEquals(prof,profile))
+                    setProfile(prof)
+                if(!deepEquals(sett,settings))
+                    setSettings(sett)
+                if(!deepEquals(chats,messages))
+                    setMessages(chats)
+
+                let pendingPeople = await getPendingLikes()
+                if(!deepEquals(pendingLikes,pendingPeople))
+                    setPendingLikes(pendingPeople)
+
             }
 
             else resetData()
@@ -75,13 +89,17 @@ function App() {
         get settings(){
             return settings
         },
+        get pendingLikes(){
+            return pendingLikes;
+        },
         setProfile: (newVal)=>{
             newVal={...profile,...newVal}
             setProfile(newVal)
-            setProfileData(newVal).then(ok=>{
-                if(!ok)
-                    getProfileData().then(data=> setProfile(data))
-            })
+            setProfileData(newVal).then(ok=> loadData())
+        },
+        setPendingLikes :(userId,newStatus)=>{
+                setRelationship(userId,newStatus)
+                    .then(()=> loadData())
         },
         setSettings,
         setMessages,
@@ -99,7 +117,6 @@ function App() {
                 <NavBar/>
             </IfLoggedIn>
 
-            {/*{JSON.stringify(messages)}*/}
 
             <Route exact path="/">
                 <IfLoggedIn cb={() =>

@@ -9,7 +9,7 @@ function NavBar(props) {
     return (
         <div className="navBar">
             <Link to={"/profile"}>
-                <img src="/images/icon-nav-profile.png" alt=""/>
+                <img src="/images/icon-nav-profile.svg" alt=""/>
             </Link>
 
             <Link to={"/dashboard"}>
@@ -17,7 +17,7 @@ function NavBar(props) {
             </Link>
 
             <Link to={"/chats"}>
-                <img src="/images/icon-nav-chat.png" alt=""/>
+                <img src="/images/icon-nav-chat.svg" alt=""/>
             </Link>
 
 

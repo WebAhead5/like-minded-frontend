@@ -3,10 +3,9 @@ import "./ocnversationEntry.css";
 
 const defaultImage = "/images/defaultImageProfile.png";
 
-function ConversationEntry({profile, lastMessage}) {
-    console.log(lastMessage)
+function ConversationEntry({profile, lastMessage, showNew = true, showLastMessage = true, onElementClick}) {
     return (
-        <div>
+        <div onClick={onElementClick}>
             <div className="messagePreviews">
                 <div>
                     <img className={"messagePreviews_profileImage"} src={profile?.primaryphoto || defaultImage}/>
@@ -16,16 +15,20 @@ function ConversationEntry({profile, lastMessage}) {
                     <p id="messagePreviews_messagePreview">{lastMessage?.message}</p>
                 </div>
 
-                <div className="messagePreviews_newAndTime">
-                    <p className="messagePreviews_new">{lastMessage?"":"NEW"}</p>
-                    <p id="timeSince">{lastMessage?.timeAndDate}</p>
-                </div>
+                {
+                    showLastMessage || showNew?
+                    <div className="messagePreviews_newAndTime">
+                        <p className="messagePreviews_new">{showNew && !lastMessage ? "NEW" : ""}</p>
+                        <p id="timeSince">{showLastMessage ? lastMessage?.timeAndDate : null}</p>
+                    </div>
+
+                        :null
+                }
             </div>
 
         </div>
     );
 }
-
 
 
 export default ConversationEntry;
