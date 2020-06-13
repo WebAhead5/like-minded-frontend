@@ -1,15 +1,14 @@
 import React from "react";
-import CandidateImages from "../../notDone/candidateImages/candidateImages";
 import CandidateSuggestion from "../../notDone/candidateSuggestion/candidateSuggestion";
-
+import "./dashboardPage.css"
 function DashboardPage({data}) {
 
     return (
-        <div className="dashboard ">
-            needs work
-            {/*<CandidateImages />*/}
-            <CandidateSuggestion data={data}/>
-            {/*<DashboardQuizSummary />*/}
+        <div className="dashboard">
+
+            <p>Discover</p>
+
+            <CandidateSuggestion profile={data.profile}  className="dashboard_Suggestion"/>
         </div>
     );
 }

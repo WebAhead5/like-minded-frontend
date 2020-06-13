@@ -1,35 +1,23 @@
 import React, {Fragment, useState} from "react";
 import "./candidateSuggestion.css";
-import LightShadowWrapper from "../../common/wrappers/lightShadowWrapper/lightShadowWrapper";
-import CircularImage from "../../common/circularImage/circularImage";
-import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
+import ProfileFields from "../../common/profileFields/profileFields";
+import DiscoverEntry from "../../common/userEntry/discoverEntry";
 
-const defaultImage = "/images/defaultImageProfile.png";
+function CandidateSuggestion({profile,className, expanded: initialExpanded = false, expandable = true}) {
 
-function CandidateSuggestion({data: {profile: {primaryphoto, firstname, lastname, status, bio, livingin,job}}}) {
-
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(initialExpanded);
     return (
-        <Fragment>
-            <p>Discover</p>
-            <LightShadowWrapper className="candidateSuggestion" onClick={() => setExpanded(!expanded)}>
-                <CircularImage src={primaryphoto} className="candidateSuggestion_img"/>
-                <span className="candidateName">{firstname} {lastname}</span>
-                {/* todo <p className="distance">5km Away</p> */}
-                <span className="candidateSuggestion_text--lite">{status}</span>
-                <span className="candidateSuggestion_text--lite">Read more</span>
-            </LightShadowWrapper>
+        <div className={`candidateSuggestion_content ${className}`}>
+
+            <DiscoverEntry profile={profile} onclick={() => expandable && setExpanded(!expanded)}/>
+
             {
                 expanded ?
-                    <Fragment>
-                        <ProfileInputField canEdit={false} title="Bio" rowCount={10} content={bio}/>
-                        <ProfileInputField canEdit={false} title="Living In" content={livingin}/>
-                        <ProfileInputField canEdit={false} title="Job" content={job}/>
-                    </Fragment>
+                    <ProfileFields profile={profile} canEdit={false}/>
                     : ""
             }
-        </Fragment>
 
+        </div>
     )
 }
 

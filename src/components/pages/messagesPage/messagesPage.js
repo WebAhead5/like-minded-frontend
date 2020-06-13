@@ -23,7 +23,11 @@ function MessagesPage({data: {chats, pendingLikes}}) {
 
                 {chats.map((entry, index) =>
                     <div className={"messagesPage_entry"} key={index}>
-                        <ConversationEntry profile={entry.profile} lastMessage={entry.lastMessageData}/>
+                        <ConversationEntry profile={entry.profile}
+                                           lastMessage={entry.lastMessageData}
+                                           onImgClick={()=>history.push(`/otherProfile?id=${entry.profile.userid}`)}
+                        />
+
                     </div>
                 )}
             </div>

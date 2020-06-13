@@ -1,0 +1,11 @@
+
+
+.dashboard{
+display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dashboard_Suggestion {
+    width: max(80%,320px);
+
+}

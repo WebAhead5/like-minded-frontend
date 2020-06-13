@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import EditProfilePage from "../pages/editProfilePage/editProfilePage";
-import ProfilePage from "../pages/profile/profilePage";
+import ProfilePage from "../pages/profilePage/profilePage";
 import {history} from "../../tools/history";
 import IfLoggedIn from "../helpers/IfLoggedIn";
 

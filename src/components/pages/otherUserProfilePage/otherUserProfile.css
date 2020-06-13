@@ -1,6 +1,9 @@
-.candidateSuggestion{
+.otherUserProfile{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.otherUserProfile_profile{
+    width: max(80%,320px);
 
+}

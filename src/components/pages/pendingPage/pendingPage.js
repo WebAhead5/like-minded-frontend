@@ -2,6 +2,7 @@ import React from 'react';
 import "../messagesPage/messagesPage.css"
 import PendingEntry from "../../common/userEntry/pendingEntry";
 import BackHeader from "../../common/backHeader/backHeader";
+import {history} from "../../../tools/history";
 
 function PendingPage({data:{pendingLikes,setPendingLikes}}) {
     return (
@@ -15,6 +16,7 @@ function PendingPage({data:{pendingLikes,setPendingLikes}}) {
                 pendingLikes.map(({profile},index)=>
                     <div className="messagesPage_entry" key={index}>
                         <PendingEntry  profile={profile}
+                                       onImgClick={ ()=> history.push(`/otherProfile?id=${profile.userid}`)}
                                        onLikeClick={()=>setPendingLikes(profile.userid,"like")}
                                        onDislikeClick={()=>setPendingLikes(profile.userid,"block")}
                         />

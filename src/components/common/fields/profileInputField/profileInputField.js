@@ -7,6 +7,7 @@ function ProfileInputField({
                                content = "",
                                title, placeHolder = "",
                                rowCount = 1,
+                               className
                            }) {
 
 
@@ -34,7 +35,7 @@ function ProfileInputField({
     }
 
     return (
-        <div className='profileInputField'>
+        <div className={`profileInputField ${className}`}>
             <label htmlFor={title}>{title}</label>
             {rowCount === 1 ? textField() : textarea()}
         </div>

@@ -5,11 +5,11 @@ import CircularImage from "../circularImage/circularImage";
 
 const defaultImage = "/images/defaultImageProfile.png";
 
-function UserEntry({profile,children, onClick,className}) {
+function UserEntry({profile,children, onClick,className, onImgClick}) {
     return (
         <LightShadowWrapper className={`userEntry ${className}`} onClick={onClick} >
 
-            <CircularImage className="userEntry_profileImage" src={profile?.primaryphoto || defaultImage}/>
+            <CircularImage  className="userEntry_profileImage" onClick={onImgClick} src={profile?.primaryphoto || defaultImage}/>
 
             <div className="userEntry_nameAndChildren">
                 <span className="userEntry_Name">{profile?.firstname} {profile?.lastname}</span>

@@ -2,6 +2,7 @@ import React from 'react';
 import "./profilePage.css"
 import CircularImage from "../../common/circularImage/circularImage";
 import {history} from "../../../tools/history";
+import QuotesWrapper from "../../common/wrappers/quotesWrapper/quotesWrapper";
 
 function ProfilePage({data: {profile}}) {
 
@@ -13,9 +14,9 @@ function ProfilePage({data: {profile}}) {
             <div className="profilePage_userInfo" onClick={()=>history.push("/profile/edit")}>
 
                 <CircularImage className="profilePage_userInfo_image" src={profile.primaryphoto}
-                               alt={"user profile image"}/>
+                               alt={"user profilePage image"}/>
                 <span className="profilePage_userInfo_name">{profile.firstname} {profile.lastname}</span>
-                <p className="profilePage_userInfo_status">{profile.status}</p>
+                <QuotesWrapper>{profile.status}</QuotesWrapper>
 
             </div>
 

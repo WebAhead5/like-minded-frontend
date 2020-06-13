@@ -11,6 +11,7 @@ import IfLoggedIn from "../helpers/IfLoggedIn";
 //module imports-----------------------------------------------
 import {history} from "../../tools/history";
 import PendingPage from "../pages/pendingPage/pendingPage";
+import OtherUserProfile from "../pages/otherUserProfilePage/otherUserProfile";
 
 
 function MessageRoutes({data}) {
@@ -26,7 +27,11 @@ function MessageRoutes({data}) {
                     <PendingPage data={data}/>
                 </IfLoggedIn>
             </Route>
-
+            <Route exact path="/otherProfile">
+                <IfLoggedIn elseCb={() => history.push("/login")}>
+                    <OtherUserProfile data={data}/>
+                </IfLoggedIn>
+            </Route>
         </Switch>
     );
 }

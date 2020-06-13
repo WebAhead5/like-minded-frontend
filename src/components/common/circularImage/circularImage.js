@@ -3,9 +3,9 @@ import "./circularImage.css"
 
 
 
-function CircularImage({src,alt,className= ""}) {
+function CircularImage({src,alt,className, onClick}) {
 
-    return (<img className={`circularImage ${className}`} src={src} alt={alt}/>);
+    return (<img className={`circularImage ${className}`} onClick={onClick} src={src} alt={alt}/>);
 }
 
 export default CircularImage;
