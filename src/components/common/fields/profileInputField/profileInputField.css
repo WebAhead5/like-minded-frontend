@@ -1,0 +1,19 @@
+
+.profileInputField label {
+    font-size: 14px;
+}
+
+.profileInputField textarea {
+    vertical-align: top;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.profileInputField input {
+    vertical-align: top;
+    width: 100%;
+    box-sizing: border-box;
+
+}

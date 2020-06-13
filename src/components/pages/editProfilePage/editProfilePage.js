@@ -1,68 +1,54 @@
-import ProfileInputField from "../../common/profileInputField/profileInputField";
-import ProfileGallery from "../../common/profileGallery/profileGallery"
-import React, {useEffect, useState} from "react";
-import  "./editProfilePage.css";
-import {useRecoilState, useRecoilValue,} from "recoil";
-import {profileState, loggedInState} from "../../../tools/recoil/recoilStates"
-import {getProfileData, setProfileData} from "../../../tools/data";
+import React, {Component, Fragment} from 'react';
+import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
+import EpImagesSelection from "../../common/epImagesSelection/epImagesSelection"
+import "./editProfilePage.css";
+import BackHeader from "../../common/backHeader/backHeader";
+import ProfileFields from "../../common/profileFields/profileFields";
 
 
+class EditProfilePage extends Component {
 
-
-function EditProfilePage( ) {
-
-    const [profile,setProfile] = useState(null)
-    useEffect(()=> {
-        getProfileData().then(res => {
-            if(!setProfile)
-                return;
-            if(res)
-                setProfile(res)
-            else
-                window.location = "/login"
-        })
-
-    },[])
-
-
-
-    function updateValue(obj) {
-
-        let newProf = {...profile, ...obj}
-        setProfile(newProf)
-        setProfileData(newProf).then(ok => {
-            if (!ok) getProfileData().then(data => {
-                if (!setProfile)
-                    return;
-                else setProfile(data)
-            })
-        })
+    constructor(props) {
+        super(props);
+        this.state = {
+            tempProfile: props.data.profile
+        }
     }
 
+    updateProfile(newFields) {
+        this.setState({tempProfile: {...this.state.tempProfile, ...newFields}})
+    }
 
-    if(!profile)
-        return <div>loading...</div>
+    componentWillUnmount() {
+        this.props.data.setProfile(this.state.tempProfile)
+    }
 
+    render() {
+        const {tempProfile} = this.state;
 
-    return (
-        <div className="editProfilePage">
-            <main className="editProfilePage_content" >
+        return (
+            <Fragment>
+                <BackHeader href="/profile">Edit Profile</BackHeader>
+                <div className="editProfilePage">
+                    <div className="editProfilePage_content">
 
+                        <EpImagesSelection initialImagesArr={[tempProfile.primaryphoto, ...tempProfile.subphotos]}
+                                           onChange={(arr) => {
+                                               this.updateProfile({"primaryphoto": arr[0], "subphotos": arr.slice(1)})
+                                           }
+                                           }/>
 
-                <ProfileGallery imagesArr={[profile.primaryphoto, ...profile.subphotos ]} onChange={(arr)=>{
-                    updateValue({"primaryphoto":arr[0] , "subphotos": arr.slice(1)})
-                }
-                } />
-                <ProfileInputField title={"status"} canEdit={true} content={profile.status} placeHolder={"describe yourself in a sentence..."}
-                                   onChange={(newVal)=>updateValue({"status": newVal}) }/>
-                <ProfileInputField title={"bio"} content={profile.bio} placeHolder={"bio..."} rowCount={5} onChange={(newVal)=>updateValue({"bio": newVal}) }/>
-                <ProfileInputField title={"job"} content={profile.job} placeHolder={"job..."} onChange={(newVal)=>updateValue({"job": newVal}) } />
-                <ProfileInputField title={"city "} content={profile.livingin} placeHolder={"city..."} onChange={(newVal)=>updateValue({"city": newVal}) } />
-            </main>
-        </div>
-    );
+                        <br/><br/>
+
+                        <ProfileFields profile={tempProfile} canEdit={true} onFieldChange={(obj) =>
+                            this.updateProfile(obj)
+                        }/>
+
+                    </div>
+                </div>
+            </Fragment>
+        );
+    }
 }
 
 export default EditProfilePage;
-
-

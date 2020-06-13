@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
+import React, {Fragment, useState} from "react";
 import "./candidateSuggestion.css";
-const { useState } = React;
+import ProfileFields from "../../common/profileFields/profileFields";
+import DiscoverEntry from "../../common/userEntry/discoverEntry";
 
-const defaultImage = "/images/defaultImageProfile.png";
+function CandidateSuggestion({profile,className, expanded: initialExpanded = false, expandable = true}) {
 
-function CandidateSuggestion({ userProfile }) {
-
-    const [expandedState, setExpandedState] = useState(false)
-
+    const [expanded, setExpanded] = useState(initialExpanded);
     return (
-        <div className="candidateSuggestion">
-            <p>Discover</p>
-            <div className="candidateSuggestion box-shadow width90">
-                <img src={defaultImage}></img>
-                <p className="candidateName">Dex Schneider</p>
-                <p className="distance">5km Away</p>
-                <p className="bioPreview">"Hi I'm Dex Schneider... bio text lorem ipsum... ya ya.</p>
-                <p className="readMoreButton">Read more</p>
-            </div>
+        <div className={`candidateSuggestion_content ${className}`}>
+
+            <DiscoverEntry profile={profile} onclick={() => expandable && setExpanded(!expanded)}/>
+
+            {
+                expanded ?
+                    <ProfileFields profile={profile} canEdit={false}/>
+                    : ""
+            }
+
         </div>
     )
 }

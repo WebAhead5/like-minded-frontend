@@ -1,0 +1,8 @@
+.ProfileFields{
+    display: flex;
+    flex-direction: column;
+}
+
+.profileFields_field{
+    margin-bottom: 25px;
+}

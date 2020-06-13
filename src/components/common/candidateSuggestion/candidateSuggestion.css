@@ -1,50 +1,6 @@
-div.candidateSuggestion{
+.candidateSuggestion{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 300px;
-    padding-top: 60px;
-    margin-bottom: 100px;;
-    
 }
 
-div.width90{
-    width: 90%;
-}
-
-.candidateSuggestion>p{
-    margin: 100px 0 30px 0;
-}
-
-div.box-shadow{
-    box-shadow: 0px 1px 4px 1px rgba(121, 121, 121, 0.44);
-}
-
-.candidateSuggestion img {
-    height: 130px;
-    width: 130px;
-    border-radius: 50%;
-}
-
-.candidateSuggestion p {
-    border: black;
-}
-
-p.candidateName {
-    font-size: 16px;
-    margin-top: 5px;
-}
-p.distance{
-    font-size: 12px;
-    margin-top: 5px;
-}
-p.bioPreview{
-    font-size: 12px;
-    margin-top: 5px;
-    color: silver;
-}
-p.readMoreButton{
-    font-size: 12px;
-    margin-top: 25px;
-}

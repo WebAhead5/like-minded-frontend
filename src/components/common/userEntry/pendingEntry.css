@@ -1,0 +1,28 @@
+.pendingPage {
+    position: relative;
+}
+
+
+.pendingPage_buttonImg{
+    width: 40px;
+    height: 40px;
+}
+
+.pendingPage_button {
+    margin: 0 15px;
+    padding: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pendingPage_button:hover{
+    box-shadow: #FF533D 0 0 5px;
+}
+.pendingPage_buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

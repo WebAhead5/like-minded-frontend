@@ -1,0 +1,66 @@
+.profilePage{
+    display: flex;
+    justify-content: center;
+}
+.profilePage_name_and_buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(500px,70%);
+}
+
+
+.profilePage_userInfo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    width: 400px;
+    width: 100%;
+    cursor:pointer;
+
+}
+.profilePage_userInfo_image{
+    width: 150px;
+    height: 150px;
+
+}
+.profilePage_userInfo_name{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 130px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    text-shadow: var(--color-red) 0 1px 1px;
+    opacity: .8;
+}
+
+
+
+.profilePage_buttonsContainer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+.profilePage_button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100px;
+    height: 100px;
+
+
+    color: black;
+    cursor:pointer;
+}
+.profilePage_button img{
+    width: 50px;
+    height: 50px;
+}

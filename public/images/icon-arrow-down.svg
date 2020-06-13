@@ -1,0 +1,14 @@
+<svg width="41.999" height="32" xmlns="http://www.w3.org/2000/svg" class="hovered-paths">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="34" width="43.999" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g transform="rotate(90 21.093441009521488,15.601780891418459) " id="svg_1">
+   <style transform="translate(0.9457123279571533,0) translate(-0.8522726893424988,-5.965909004211426) translate(0,0.28409087657928467) translate(0,0.28409087657928467) " type="text/css"/>
+   <path id="svg_2" fill="#FFFFFF" class="hovered-path active-path" d="m36.16144,14.778273l-29,-20c-0.307,-0.211 -0.705,-0.233 -1.033,-0.062c-0.329,0.173 -0.535,0.513 -0.535,0.885l0,40c0,0.372 0.206,0.713 0.535,0.886c0.146,0.076 0.306,0.114 0.465,0.114c0.199,0 0.397,-0.06 0.568,-0.177l29,-20c0.271,-0.187 0.432,-0.494 0.432,-0.823s-0.162,-0.636 -0.432,-0.823z"/>
+  </g>
+ </g>
+</svg>

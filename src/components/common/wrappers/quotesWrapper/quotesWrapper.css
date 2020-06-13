@@ -1,0 +1,21 @@
+
+.quotesWrapper{
+    text-shadow: var(--color-red) 0 1px 1px;
+    opacity: .8;
+    padding: 0;
+    margin: 0;
+    /*text-align: center;*/
+    word-break: break-word;
+}
+
+.quotesWrapper:before,.quotesWrapper:after {
+    font-weight: bolder;
+    /*font-size: 18px;*/
+    font-size: x-large;
+}
+.quotesWrapper:after{
+    content: "❞";
+}
+.quotesWrapper:before{
+    content: '❝';
+}

@@ -1,0 +1,40 @@
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard_Suggestion {
+    width: max(80%, 320px);
+
+}
+
+.dashboard_SuggestionContainer {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.dashboard_button {
+
+    width: 10%;
+    margin: 0 5px 20px 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+text-transform: capitalize;
+}
+
+.dashboard_like_button {
+    background-color: var(--color-red);
+    color: white;
+}
+
+.dashboard_dislike_button {
+    background-color: black;
+    color: white;
+
+}
