@@ -1,0 +1,31 @@
+
+
+.messagePreviews{
+    position: relative ;
+    padding-right: 10px !important;
+}
+
+.conversationEntry_new{
+    color: var(--color-red);
+    font-size: 18px;
+    text-shadow: 0px 4px 3px rgba(119,119,119,0.68);
+
+    position: absolute;
+    right: 10px;
+    height: fit-content;
+
+}
+
+.conversationEntry_text{
+    font-size: 14px;
+    color: rgba(0,0,0,.6);
+}
+
+.conversationEntry_message{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.conversationEntry_timestamp{
+    text-align: right;
+
+}

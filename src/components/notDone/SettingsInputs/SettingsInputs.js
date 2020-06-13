@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import InputFieldWrapper from "../../common/inputFieldWrapper/inputFieldWrapper";
+import InputFieldWrapper from "../../common/wrappers/inputFieldWrapper/inputFieldWrapper";
 import "./SettingsInputs.css";
 const { useState } = React;
 

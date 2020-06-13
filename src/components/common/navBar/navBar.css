@@ -2,13 +2,15 @@ div.navBar {
     height: 35px;
     background-color: var( --color-navy);
     display: flex;
-    position: fixed;
+    position: sticky;
     top:0;
     width: 100%;
     /*max-width: 500px;*/
     align-items: center;
     justify-content: space-between;
     z-index: 999;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .navBar a {

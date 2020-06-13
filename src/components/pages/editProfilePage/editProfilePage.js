@@ -1,6 +1,6 @@
 
 import React from "react";
-import ProfileInputField from "../../common/profileInputField/profileInputField";
+import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
 import EditProfile_imagesSelection from "../../common/editProfile_imagesSelection/editProfile_imagesSelection"
 import  "./editProfilePage.css";
 

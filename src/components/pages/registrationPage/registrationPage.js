@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import InputFieldWrapper from "../../common/inputFieldWrapper/inputFieldWrapper";
-import TextField from "../../common/textField/textField";
+import InputFieldWrapper from "../../common/wrappers/inputFieldWrapper/inputFieldWrapper";
+import TextField from "../../common/fields/textField/textField";
 import "./registrationPage.css"
 import "../../../index.css"
 import {Link} from "react-router-dom";

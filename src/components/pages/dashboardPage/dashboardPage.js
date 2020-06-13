@@ -5,7 +5,7 @@ import DashboardQuizSummary from "../../notDone/dashboardQuizSummary/dashboardQu
 import React, {Fragment} from "react";
 import NavBar from "../../common/navBar/navBar";
 import EditProfile_imagesSelection from "../../common/editProfile_imagesSelection/editProfile_imagesSelection";
-import ProfileInputField from "../../common/profileInputField/profileInputField";
+import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
 
 function DashboardPage({ canEdit, onChange, imagesArr }) {
     // const [content, setContent] = useState("")

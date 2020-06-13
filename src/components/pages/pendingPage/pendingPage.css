@@ -2,23 +2,27 @@
     position: relative;
 }
 
-.pendingPage_icon {
+
+.pendingPage_buttonImg{
     width: 40px;
     height: 40px;
-    padding: 0 20px;
-    margin: 0 10px;
-    cursor: pointer;
 }
 
-.pendingPage_iconsContainer {
+.pendingPage_button {
+    margin: 0 15px;
+    padding: 10px 0;
+    cursor: pointer;
+    width: 100%;
     display: flex;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
-.pendingPage_iconsContainer:hover{
-    box-shadow: #FF533D 3px 0 5px;
+
+.pendingPage_button:hover{
+    box-shadow: #FF533D 0 0 5px;
+}
+.pendingPage_buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
