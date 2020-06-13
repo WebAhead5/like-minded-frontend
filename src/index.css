@@ -31,7 +31,7 @@ code {
 }
 
 .orangeBtn{
-  background-color: #FF533D;
+  background-color: var(--color-red);
   color: #F5F5F5;
   border: 0;
 

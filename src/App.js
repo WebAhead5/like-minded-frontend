@@ -17,12 +17,15 @@ import IfLoggedIn from "./components/helpers/IfLoggedIn";
 import {history} from "./tools/history";
 import {
     getLoggedInUserData,
-    getPendingLikes,
+    getPendingLikes, getPotentialMatches,
     isLoggedIn,
     setProfileData,
     setRelationship
 } from "./tools/data";
 import deepEquals from "deep-equal"
+import LoadingPage from "./components/pages/loadingPage/loadingPage";
+import SettingsPage from "./components/pages/settingsPage/settingsPage";
+import MainRoutes from "./components/routes/mainRoutes";
 
 
 function App() {
@@ -32,6 +35,7 @@ function App() {
     const [profile, setProfile] = useState(undefined)
     const [settings, setSettings] = useState(undefined)
     const [messages, setMessages] = useState(undefined)
+    const [potentialMatches, setPotentialMatches] = useState(undefined)
     const [pendingLikes, setPendingLikes] = useState(undefined)
 
     function loadData(cb) {
@@ -52,9 +56,16 @@ function App() {
                 if(!deepEquals(chats,messages))
                     setMessages(chats)
 
+
+                let matchesData = await getPotentialMatches()
+                if(!deepEquals(matchesData,potentialMatches))
+                    setPotentialMatches(matchesData)
+
+
                 let pendingPeople = await getPendingLikes()
                 if(!deepEquals(pendingLikes,pendingPeople))
                     setPendingLikes(pendingPeople)
+
 
             }
 
@@ -81,16 +92,19 @@ function App() {
          return profile;
         },
         get messages(){
-            return messages
+            return messages;
         },
         get chats(){
-            return messages
+            return messages;
         },
         get settings(){
-            return settings
+            return settings;
         },
         get pendingLikes(){
             return pendingLikes;
+        },
+        get potentialMatches(){
+            return potentialMatches;
         },
         setProfile: (newVal)=>{
             if(!deepEquals(newVal,profile))
@@ -100,7 +114,7 @@ function App() {
             }
 
         },
-        setPendingLikes :(userId,newStatus)=>{
+        setRelationship :(userId, newStatus)=>{
 
                 setRelationship(userId,newStatus)
                     .then(()=> loadData())
@@ -112,7 +126,7 @@ function App() {
 
 
     if (loading)
-        return <div>loading....</div>
+        return <div><LoadingPage/></div>
 
 
     return (
@@ -122,23 +136,15 @@ function App() {
             </IfLoggedIn>
 
 
-            <Route exact path="/">
-                <IfLoggedIn cb={() =>
-                    loadData(() => history.push("/dashboard"))  }
-                            elseCb={() => history.push("/login")}/>
-
-            </Route>
 
 
-            <Route exact path="/dashboard">
-                <IfLoggedIn elseCb={()=>history.push("/login")} >
-                    <DashboardPage data={dataObj}/>
-                </IfLoggedIn>
-            </Route>
-
+            <MainRoutes data={dataObj} loadData={loadData}/>
             <AuthRoutes/>
             <ProfileRoutes data={dataObj} />
             <MessageRoutes data={dataObj}/>
+
+
+
         </div>
     );
 }

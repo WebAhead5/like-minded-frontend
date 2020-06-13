@@ -58,6 +58,19 @@ export async function getChats() {
     return [];
 
 }
+export async function getPotentialMatches() {
+    try {
+
+        let {data: res} = await Axios.get("/api/matches?count=1") //todo return a numbered amount of matches
+        if(res.ok)
+            return res.data;
+
+    } catch (e) {
+        console.error("something went wrong on our end")
+    }
+
+    return [];
+}
 //todo set/send message
 
 

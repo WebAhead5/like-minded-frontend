@@ -1,4 +1,4 @@
-import SettingsInputs from "../../notDone/SettingsInputs/SettingsInputs"
+import SettingsInputs from "../SettingsInputs/SettingsInputs"
 import "./settings.css"
 import React, { Fragment } from "react";
 

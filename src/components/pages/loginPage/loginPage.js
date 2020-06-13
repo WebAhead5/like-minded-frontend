@@ -61,8 +61,12 @@ export function LoginPage() {
             </Link>
             <hr/>
 
-            <a href={"/api/auth/google"}> <input type="button" value={"Sign in with Google"}
-                                                 className={"orangeBtn roundedCorners_lite register_button"}/></a>
+            <input type="button"
+                   onClick={()=>history.push("/api/auth/google")}
+                   value={"Sign in with Google"}
+                   className={"orangeBtn roundedCorners_lite register_button"}
+            />
+
 
         </form>
 

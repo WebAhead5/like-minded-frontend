@@ -4,7 +4,7 @@ import PendingEntry from "../../common/userEntry/pendingEntry";
 import BackHeader from "../../common/backHeader/backHeader";
 import {history} from "../../../tools/history";
 
-function PendingPage({data:{pendingLikes,setPendingLikes}}) {
+function PendingPage({data:{pendingLikes,setRelationship}}) {
     return (
         <div>
             <BackHeader href={"/chats"} >
@@ -17,8 +17,8 @@ function PendingPage({data:{pendingLikes,setPendingLikes}}) {
                     <div className="messagesPage_entry" key={index}>
                         <PendingEntry  profile={profile}
                                        onImgClick={ ()=> history.push(`/otherProfile?id=${profile.userid}`)}
-                                       onLikeClick={()=>setPendingLikes(profile.userid,"like")}
-                                       onDislikeClick={()=>setPendingLikes(profile.userid,"block")}
+                                       onLikeClick={()=>setRelationship(profile.userid,"like")}
+                                       onDislikeClick={()=>setRelationship(profile.userid,"block")}
                         />
                     </div>
                 )

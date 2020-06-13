@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import BackHeader from "../../common/backHeader/backHeader";
 import {history} from "../../../tools/history";
-import CandidateSuggestion from "../../notDone/candidateSuggestion/candidateSuggestion";
+import CandidateSuggestion from "../../common/candidateSuggestion/candidateSuggestion";
 import "./otherUserProfile.css"
 
 
