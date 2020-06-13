@@ -1,6 +1,6 @@
 import React from 'react';
-import "./smallEntryWrapper.css"
-function SmallEntryWrapper({children,className, onClick}) {
+import "./lightShadowWrapper.css"
+function LightShadowWrapper({children,className, onClick}) {
     return (
         <div className={`smallEntryWrapper ${className}`} onClick={onClick}>
             {children}
@@ -8,5 +8,5 @@ function SmallEntryWrapper({children,className, onClick}) {
     );
 }
 
-export default SmallEntryWrapper;
+export default LightShadowWrapper;
 

@@ -1,20 +1,20 @@
-div.navBar {
-    height: 35px;
+.navBar {
     background-color: var( --color-navy);
-    display: flex;
     position: sticky;
-    top:0;
+
+    height: 35px;
     width: 100%;
-    /*max-width: 500px;*/
+
+    box-sizing: border-box;
+    padding: 30px;
+    margin-bottom: 10px;
+
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 999;
-    padding: 10px;
-    margin-bottom: 10px;
 }
 
 .navBar a {
-    display: flex;
 }
 
 .navBar img {

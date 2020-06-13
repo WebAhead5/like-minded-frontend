@@ -7,9 +7,10 @@ const {useState} = React;
 
 const defaultImage = "/images/defaultImageProfile.png";
 
-function EpImagesSelection({onChange, initialImagesArr = [defaultImage, defaultImage, defaultImage, defaultImage]}) {
+function EpImagesSelection({onChange, initialImagesArr = []}) {
 
     const [imagesArrState, setImagesArrState] = useState(initialImagesArr)
+    const [pageLoaded, setPageLoaded] = useState(false)
 
     function updateImage(index, imgString) {
         let newState = imagesArrState.map((img, i) => index === i ? imgString : img)
@@ -26,7 +27,14 @@ function EpImagesSelection({onChange, initialImagesArr = [defaultImage, defaultI
         }
 
     }, [])
-    useEffect(() => onChange && onChange(imagesArrState), [imagesArrState]);
+    useEffect(() =>
+    {
+        if(!pageLoaded)
+            setPageLoaded(true);
+        else
+            onChange && onChange(imagesArrState)
+
+    }, [imagesArrState]);
 
 
 

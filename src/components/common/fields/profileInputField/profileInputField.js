@@ -1,34 +1,44 @@
 import React from 'react';
 import "./profileInputField.css"
 
-function profileInputField({ canEdit = true, onChange
-    , content ="", title, placeHolder="", rowCount=1 }) {
+function ProfileInputField({
+                               canEdit = true,
+                               onChange,
+                               content = "",
+                               title, placeHolder = "",
+                               rowCount = 1,
+                           }) {
 
-    // const [content, setContent] = useState("")
+
     function textField() {
         return <input
-                      name={title}
-                      type={"text"}
-                      value={content}
-                      placeholder={placeHolder}
-                      onChange={(e) => canEdit && onChange && onChange(e.target.value)}/>
+            readOnly={!canEdit}
+            name={title}
+            type={"text"}
+            value={content}
+            placeholder={placeHolder}
+            onChange={(e) => onChange && onChange(e.target.value)}/>
 
     }
-    function textarea () {
+
+
+    function textarea() {
         return <textarea
-                      name={title}
-                      placeholder={placeHolder}
-                      value={content}
-                      rows={rowCount}
-                      onChange={(e) => canEdit && onChange && onChange(e.target.value)}/>
+            readOnly={!canEdit}
+            name={title}
+            placeholder={placeHolder}
+            value={content}
+            rows={rowCount}
+            onChange={(e) =>  onChange && onChange(e.target.value)}/>
 
     }
+
     return (
-        <div className='profileInputField' >
+        <div className='profileInputField'>
             <label htmlFor={title}>{title}</label>
-            {rowCount===1? textField() : textarea()}
+            {rowCount === 1 ? textField() : textarea()}
         </div>
     );
 }
 
-export default profileInputField;
+export default ProfileInputField;

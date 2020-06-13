@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./pendingEntry.css"
 import UserEntry from "./userEntry";
 
 function PendingEntry({profile, onLikeClick, onDislikeClick, onClick}) {

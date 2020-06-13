@@ -1,6 +1,5 @@
 import React from 'react';
 import "../messagesPage/messagesPage.css"
-import "./pendingPage.css"
 import PendingEntry from "../../common/userEntry/pendingEntry";
 import BackHeader from "../../common/backHeader/backHeader";
 
@@ -11,7 +10,7 @@ function PendingPage({data:{pendingLikes,setPendingLikes}}) {
                 pending requests
             </BackHeader>
 
-            <div className={"messagesPage"}>
+            <div className="messagesPage">
             {
                 pendingLikes.map(({profile},index)=>
                     <div className="messagesPage_entry" key={index}>

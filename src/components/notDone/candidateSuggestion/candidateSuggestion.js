@@ -1,24 +1,35 @@
-import React from "react";
+import React, {Fragment, useState} from "react";
 import "./candidateSuggestion.css";
-const { useState } = React;
+import LightShadowWrapper from "../../common/wrappers/lightShadowWrapper/lightShadowWrapper";
+import CircularImage from "../../common/circularImage/circularImage";
+import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
 
 const defaultImage = "/images/defaultImageProfile.png";
 
-function CandidateSuggestion({ userProfile }) {
+function CandidateSuggestion({data: {profile: {primaryphoto, firstname, lastname, status, bio, livingin,job}}}) {
 
-    const [expandedState, setExpandedState] = useState(false)
-
+    const [expanded, setExpanded] = useState(false);
     return (
-        <div className="candidateSuggestion">
+        <Fragment>
             <p>Discover</p>
-            <div className="candidateSuggestion box-shadow width90">
-                <img src={defaultImage}></img>
-                <p className="candidateName">Dex Schneider</p>
-                <p className="distance">5km Away</p>
-                <p className="bioPreview">"Hi I'm Dex Schneider... bio text lorem ipsum... ya ya.</p>
-                <p className="readMoreButton">Read more</p>
-            </div>
-        </div>
+            <LightShadowWrapper className="candidateSuggestion" onClick={() => setExpanded(!expanded)}>
+                <CircularImage src={primaryphoto} className="candidateSuggestion_img"/>
+                <span className="candidateName">{firstname} {lastname}</span>
+                {/* todo <p className="distance">5km Away</p> */}
+                <span className="candidateSuggestion_text--lite">{status}</span>
+                <span className="candidateSuggestion_text--lite">Read more</span>
+            </LightShadowWrapper>
+            {
+                expanded ?
+                    <Fragment>
+                        <ProfileInputField canEdit={false} title="Bio" rowCount={10} content={bio}/>
+                        <ProfileInputField canEdit={false} title="Living In" content={livingin}/>
+                        <ProfileInputField canEdit={false} title="Job" content={job}/>
+                    </Fragment>
+                    : ""
+            }
+        </Fragment>
+
     )
 }
 

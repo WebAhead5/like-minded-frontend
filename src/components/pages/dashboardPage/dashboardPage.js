@@ -1,16 +1,15 @@
 import React from "react";
-import EpImagesSelection from "../../common/epImagesSelection/epImagesSelection";
-import ProfileInputField from "../../common/fields/profileInputField/profileInputField";
+import CandidateImages from "../../notDone/candidateImages/candidateImages";
+import CandidateSuggestion from "../../notDone/candidateSuggestion/candidateSuggestion";
 
-function DashboardPage({ canEdit, onChange, imagesArr }) {
+function DashboardPage({data}) {
 
     return (
-        <div className="dashboard ">needs work
+        <div className="dashboard ">
+            needs work
             {/*<CandidateImages />*/}
-            {/*<CandidateSuggestion />*/}
+            <CandidateSuggestion data={data}/>
             {/*<DashboardQuizSummary />*/}
-            <EpImagesSelection/>
-            <ProfileInputField/>
         </div>
     );
 }

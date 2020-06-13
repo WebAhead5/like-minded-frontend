@@ -93,11 +93,15 @@ function App() {
             return pendingLikes;
         },
         setProfile: (newVal)=>{
-            newVal={...profile,...newVal}
-            setProfile(newVal)
-            setProfileData(newVal).then(ok=> loadData())
+            if(!deepEquals(newVal,profile))
+            {
+                setProfile(newVal)
+                setProfileData(newVal).then(ok=> !ok && loadData())
+            }
+
         },
         setPendingLikes :(userId,newStatus)=>{
+
                 setRelationship(userId,newStatus)
                     .then(()=> loadData())
         },
@@ -127,7 +131,9 @@ function App() {
 
 
             <Route exact path="/dashboard">
-                <IfLoggedIn elseCb={()=>history.push("/login")} ><DashboardPage/> </IfLoggedIn>
+                <IfLoggedIn elseCb={()=>history.push("/login")} >
+                    <DashboardPage data={dataObj}/>
+                </IfLoggedIn>
             </Route>
 
             <AuthRoutes/>
